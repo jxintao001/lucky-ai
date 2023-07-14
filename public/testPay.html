@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>微信公众号支付</title>
+</head>
+<body>
+<h1>微信公众号支付示例</h1>
+<button id="payBtn">点击支付</button>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<script>
+    // // 配置微信支付参数
+    wx.config({
+        appId: 'wx8555b45fae20476c',
+        // timestamp: 1682691428,
+        // nonceStr: 'MdhVFn2HttC0UJvf',
+        // signature: 'D2EF69B310D8BD52118E70C3B7AD6B5B',
+        // jsApiList: ['chooseWXPay']
+    });
+
+    // 点击支付按钮触发支付流程
+    document.getElementById('payBtn').addEventListener('click', function() {
+        // 获取订单信息
+        var order = {
+            timeStamp: "1682694306",
+            nonceStr: "HjSqlbeeezIXyzS5",
+            package: "prepay_id=wx28230506309954763da68f06cc71760000",
+            signType: "MD5",
+            paySign: "6794E0BF55101D60E87B54AB830F03C5"
+        };
+
+        // 调用微信支付API
+        wx.chooseWXPay({
+            timestamp: order.timeStamp,
+            nonceStr: order.nonceStr,
+            package: order.package,
+            signType: order.signType,
+            paySign: order.paySign,
+            success: function (res) {
+                // 支付成功后的回调函数
+                alert('支付成功');
+            },
+            fail: function (res) {
+                // 支付失败后的回调函数
+                alert('支付失败');
+            }
+        });
+    });
+</script>
+</body>
+</html>

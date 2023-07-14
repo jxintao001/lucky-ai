@@ -1,0 +1,287 @@
+<script language="JavaScript" type="text/javascript">
+    function CheckValue() {
+        var paymenttype = document.getElementById("PaymentType").value;
+        var paymentlinktype = document.getElementById("PaymentLinkType").value;
+        if (paymenttype == "6" && paymentlinktype == "2") {
+            trUnionPayLinkType.style.display = "inline";
+        } else {
+            trUnionPayLinkType.style.display = "none";
+        }
+    }
+    function SelectedIndexChanged() {
+        var paytypeid = document.getElementById("PayTypeID").value;
+        var installmentCode = document.getElementById("InstallmentCode");
+        var installmentNum = document.getElementById("InstallmentNum");
+        if (paytypeid == "ImmediatePay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        }
+        else if (paytypeid == "PreAuthPay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        }
+        else if (paytypeid == "DividedPay") {
+            installmentCode.style.display = "inline";
+            installmentNum.style.display = "inline";
+
+        }
+    }
+    function addLine() {
+        var row = account.insertRow();
+        for (var j = 0; j < 2; j++) {
+            var col = row.insertCell();
+            switch (j) {
+                case 0:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitMerchantID[]\" style=\"width:95%\" value=\"\">";
+                    break;
+                case 1:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitAmount[]\" style=\"width:95%\" value=\"\">";
+                    break;
+            }
+
+        }
+
+        form1.button.disabled = "";
+    }
+
+    function addOrderItems() {
+        var items = new Array();
+        let ProductName = $("input[name='ProductName']").val();
+        items.push({ProductName: ProductName});
+        $("input[name='OrderItems']").val(JSON.stringify(items));
+    }
+
+    var splitAccInfoItems = new Array();
+
+	function addSubInfo() {
+		var splitMerchantID = document.getElementsByName("SplitMerchantID").value;
+		var splitAmount = document.getElementsByName("SplitAmount").value;
+        splitAccInfoItems.push({SplitMerchantID: splitMerchantID, SplitAmount: splitAmount});
+        document.getElementsByName("SplitAccInfoItems").value = JSON.stringify(splitAccInfoItems);
+    }
+
+    function clearSubInfo() {
+        splitAccInfoItems = [];
+        document.getElementById("SplitAccInfoItems").value = "";
+    }
+</script>
+<html>
+<head>
+	<meta charset="UTF-8">
+<title>农行网上支付平台-商户接口范例-支付请求</title>
+</head>
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF'
+	alink='#FF0000'>
+	<form name="form1" action='OLScanPayOrderReq.php' method="post">
+		<table>
+			<tr>
+				<td>支付账户类型</td>
+				<td><select name="PaymentType" id="PaymentType">
+					<option value="1">农行借记卡</option>
+					<option value="2">国际卡</option>
+					<option value="3">农行贷记卡</option>
+					<option value="A" selected>农行借贷记卡/一码多扫</option>
+					<option value="6">银联跨行</option>
+					<option value="7">农行对公账户</option>
+				</select>支付账户类型，1：农行借记卡 2：国际卡 3：农行贷记卡 A：农行借记卡、贷记卡/一码多扫 6：银联跨行 7：农行对公账户，*必输
+				<td>
+			</tr>
+			<tr>
+				<td>支付交易渠道</td>
+				<td><select name="PaymentLinkType" id="PaymentLinkType">
+					<option value="1" selected>电脑网络接入</option>
+					<option value="2">手机网络接入</option>
+					<option value="3">数字电视网络接入</option>
+					<option value="4">智能客户端接入</option>
+				</select>支付交易渠道，1：电脑网络接入 2：手机网络接入 3：数字电视网络接入 4：智能客户端接入，*必输
+				<td>
+			</tr>
+			<tr>
+				<td>支付结果通知方式</td>
+				<td><select name="NotifyType" id="NotifyType">
+					<option value="0" selected>仅页面跳转通知</option>
+					<option value="1">页面跳转通知和服务器通知</option>
+				</select>支付结果通知方式，0：仅页面跳转通知 1：页面跳转通知和服务器通知，*必输
+				<td>
+			</tr>
+			<tr>
+				<td>通知URL地址</td>
+				<td><input type="text" name="ResultNotifyURL"
+				    value="http://yourwebsite/appname/MerchantResult.jsp">商户接收支付结果通知地址，商户自己填写，*必输</td>
+			</tr>
+			<tr>
+				<td>交易类型</td>
+				<td><select name="PayTypeID" id="PayTypeID" onclick="SelectedIndexChanged()">
+					<option value="ImmediatePay" selected>普通支付</option>
+					<option value="DividedPay">分期支付</option>
+					<option value="PreAuthPay">预授权支付</option>
+				</select>交易类型，ImmediatePay：普通支付 DividedPay：分期支付 PreAuthPay：预授权支付，*必输
+				<td>
+			</tr>
+			<tr>
+				<td>订单日期</td>
+				<td><input type="text" name="OrderDate" value="2020/04/24">（YYYY/MM/DD），*必输</td>
+			</tr>
+			<tr>
+				<td>订单时间</td>
+				<td><input type="text" name="OrderTime" value="11:55:30">（HH:MM:SS），*必输</td>
+			</tr>
+			<tr>
+				<td>订单号</td>
+				<td><input type="text" name="OrderNo">*必输</td>
+			</tr>
+			<tr>
+				<td>交易币种</td>
+				<td><input type="text" name="CurrencyCode" value="156" />交易币种，请上送156人民币，*必输</td>
+			</tr>
+			<tr>
+				<td>交易金额</td>
+				<td><input type="text" name="OrderAmount" value="2.00" />*必输</td>
+			</tr>
+			<tr>
+				<td>商品类型</td>
+				<td><input type="text" name="CommodityType" value="0101" />CommodityType: 0101:支付账户充值，0201:虚拟类，0202:传统类，0203:实名类，0301:本行转账，0302:他行转账，
+					0401:水费，0402:电费，0403:煤气费，0404:有线电视费，0405:通讯费，0406:物业费，0407:保险费，0408:行政费用，0409:税费，0410:学费，0499:其他，0501:基金，0502:理财产品，0599:其他，*必输</td>
+			</tr>
+			<tr>
+				<td>客户IP</td>
+				<td><input name='BuyIP' value='127.0.0.1' />请上送客户真实IP，*必输</td>
+		    </tr>
+			<tr>
+				<td>产品名称</td>
+				<td><input type="text" name="ProductName" value="中国移动IP卡" onchange="addOrderItems(); return false"/>产品名称，将显示在农行支付页面，*必输</td>
+			</tr>
+			<tr>
+				<td>指定商户收款账户账号</td>
+				<td><input type="text" name="ReceiveAccount" value="" />选输</td>
+			</tr>
+			<tr>
+				<td>指定商户收款账户户名</td>
+				<td><input type="text" name="ReceiveAccName" value="" />选输</td>
+			</tr>
+			<tr>
+				<td>附言</td>
+				<td><input type="text" name="MerchantRemarks" value="" />选输</td>
+			</tr>
+			<tr>
+				<td>交易是否支持向二级商户分账</td>
+				<td><select name="IsBreakAccount" id="IsBreakAccount">
+					<option value="0" selected>不进行分账</option>
+					<option value="1">进行分账</option>
+				</select>农行模板分账或者平台商户的二级商户分账时必输，1：进行分账 0：不进行分账</td>
+			</tr>
+			<tr>
+				<td>模板分账模板号</td>
+				<td><input type="text" name="SplitAccTemplate" />农行模板分账时必输，模板分账模板号，选输</td>
+			</tr>
+			<tr>
+				<td>订单超时时间</td>
+				<td><input type="text" name="orderTimeoutDate"
+						   value="20171231000000" />农行支付以及一码多扫支付订单超时时间。如果不上送，农行支付超时时间默认半小时，一码多扫默认无超时时间，选输</td>
+			</tr>
+			<tr>
+				<td>补贴金额</td>
+				<td><input type="text" name="SubsidyAmount" value="1.00" />补贴金额，需平台商户结合补贴交易使用，选输</td>
+			</tr>
+			<tr>
+				<td>手续费金额</td>
+				<td><input type="text" name="Fee" value="" />选输</td>
+			</tr>
+			<tr>
+				<td>指定客户支付账户</td>
+				<td><input type="text" name="AccountNo" value="" />指定客户支付账户，仅针对农行普通支付，选输</td>
+			</tr>
+			<tr>
+				<td>订单描述</td>
+				<td><input type="text" name="OrderDesc" value="" />使用一码多扫时该字段内容将展示在微信和支付宝付款界面，如不上送默认为商品订单描述，选输</td>
+			</tr>
+			<tr>
+				<td>一码多扫完成自动跳转URL地址</td>
+				<td><input type="text" name="OrderURL" value="" />一码多扫微信支付完成自动跳转URL地址，该地址需base64后填入，选输</td>
+			</tr>
+			<tr>
+				<td>收货地址</td>
+				<td><input type="text" name="ReceiverAddress" value="北京" />选输</td>
+			</tr>
+			<tr>
+				<td>分期标识</td>
+				<td><select name="InstallmentMark" id="InstallmentMark">
+					<option value="0" selected>不进行分期支付</option>
+					<option value="1">进行分期支付</option>
+				</select>分期支付时需要上送，1：进行分期支付，0：不进行分期支付</td>
+			</tr>
+			<tr>
+				<td>分期代码</td>
+				<td><input type="text" name="InstallmentCode" value='' />分期支付时需要上送，分期代码</td>
+			</tr>
+			<tr>
+			    <td>分期期数</td>
+			    <td><input type="text" name='InstallmentNum' value='' />分期支付时需要上送，分期期数</td>
+			</tr>
+		    <tr>
+			    <td>过期时间</td>
+			    <td><input name='ExpiredDate' value='30' />过期时间，历史字段，无需上送</td>
+		    </tr>
+			<tr>
+				<td>是否实名验证</td>
+				<td><select name="VerifyFlag" id="VerifyFlag">
+					<option value="" selected></option>
+					<option value="0">否</option>
+					<option value="1">是</option>
+				</select>是否实名验证，0：否，1：是</td>
+			</tr>
+			<tr>
+				<td>证件类型</td>
+				<td><select name="VerifyType" id="VerifyType">
+					<option value="" selected></option>
+					<option value="1">身份证/户口本</option>
+					<option value="C">港澳通行证</option>
+					<option value="G">台胞通行证</option>
+					<option value="B">中国护照/外国护照</option>
+				</select>证件类型，1：身份证/户口本，C：港澳通行证，G：台胞通行证，B：中国护照/外国护照</td>
+			</tr>
+			<tr>
+				<td>证件号码</td>
+				<td><input type="text" name="VerifyNo" value="" />选输</td>
+			</tr>
+			<!--<tr>
+				<td>分账子商户号</td>
+				<td><input type="text" name="SplitMerchantID" id="SplitMerchantID" value="001" />选输</td>
+			</tr>
+			<tr>
+				<td>子商户分账金额</td>
+				<td><input type="text" name="SplitAmount" id="SplitAmount" value="0.01" />所有子商户分账金额的总和需要等于该笔的订单金额，选输</td>
+			</tr>-->
+			<tr>
+				<td>平台商户当前分账情况</td>
+				<td><input type="text" name="SplitAccInfoItems" value="" />选输</td>
+			</tr>
+			<tr><td><input type="hidden" name="OrderItems" value=""></td></tr>
+			<tr>
+				<td colspan="2">
+					<table border="1" style="font-size: 12px;" width="50%" id="account">
+						<tr>
+							<td width="12%" align="center">分账子商户号</td>
+							<td width="12%" align="center">子商户分账金额	</td>
+						<tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type='button' value='增加' name="add" onclick="addLine()">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type='BUTTON' value='提交订单'
+					onclick="form1.submit()"></td>
+			</tr>
+		</table>
+	</form>
+	<center>
+		<a href='Merchant.html'>回商户首页</a>
+	</center>
+</body>
+</html>

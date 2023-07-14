@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-营销补贴资金发放-补贴支付</title>
+</head>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>营销补贴资金发放-补贴支付 </center>
+    <form name="form1" action='SubsidyTransfer.php' method="post">
+        <table>
+            <tr>
+                <td>订单号</td>
+                <td><input name='OrderNo' value='No123123123'/>*必输</td>
+            </tr>
+            <tr>
+                <td>内转号</td>
+                <td><input name='InternalTransferNo' value=''/>*必输</td>
+            </tr>
+            <tr>
+                <td>出金子账户</td>
+                <td><input name='RemitterSubMerchantNo' value='001'/>*必输</td>
+            </tr>
+            <tr>
+                <td>入金子账户</td>
+                <td><input name='RemitteeSubMerchantNo' value=''/>*必输</td>
+            </tr>
+            <tr>
+                <td>补贴金额</td>
+                <td><input name='Amount' value='0.01'/>*必输</td>
+            </tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

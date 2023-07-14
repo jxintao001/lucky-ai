@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-客户账薄支付</title>
+</head>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>客户账薄支付</center>
+    <form name="form1" action='PlatSubCustomPay.php' method="post">
+        <table>
+            <tr>
+                <td>交易流水号</td>
+                <td><input name='OrderNo' value='No123123123'/>*必输</td>
+            </tr>
+            <tr>
+                <td>转出方二级客户编号</td>
+                <td><input name='PlatSubCustomNo' value='010'/>*必输</td>
+            </tr>
+            <tr>
+                <td>转入方二级商户编号</td>
+                <td><input name='PlatSubMerchantNo' value='009'/>*必输</td>
+            </tr>
+            <tr>
+                <td>交易金额</td>
+                <td><input name='Amount' value='1.00'/>*必输</td>
+            </tr>
+            <tr>
+                <td>附言</td>
+                <td><input name='Remark' value=''/></td>
+            </tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

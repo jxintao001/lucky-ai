@@ -1,0 +1,68 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-第三方订单信息确认(含附言)</title>
+</head>
+<script language="javascript" type="text/javascript">
+    var SplitMerchantID = new Array();
+	var SplitAmount  = new Array();
+	function addLine() {
+        var row = account.insertRow();
+        for (var j = 0; j < 2; j++) {
+            var col = row.insertCell();
+            switch (j) {
+                case 0:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitMerchantID[]\" style=\"width:95%\" value=\"\">";
+                    break;
+                case 1:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitAmount[]\" style=\"width:95%\" value=\"\">";
+                    break;
+            }
+
+        }
+
+        form1.button.disabled = "";
+    }
+</script>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>第三方订单信息确认(含附言)</center>
+    <form name="form1" action='ThirdConfirmTranslog.php' method="post">
+        <table>
+            <tr>
+                <td>原订单编号</td>
+                <td><input name='OrderNo' value='001123123'/>*必输</td>
+            </tr>
+            <tr>
+                <td>流水号</td>
+                <td><input name='BatchNo' value='002' />*必输</td>
+            </tr>
+            <tr>
+                <td>附言</td>
+                <td><input name='Remark' value='' /></td>
+            </tr>
+			<tr>
+				<td colspan="2">
+					<table border="1" style="font-size: 12px;" width="50%" id="account">
+							<tr>
+								<td width="12%" align="center">二级商户编号</td>
+								<td width="12%" align="center">分账金额</td>
+							</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" value=" 添加 " name="AddOrder"
+					onclick="addLine()" /></td>
+			</tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿<html>
+<head>
+    <title>农行网上支付平台-商户接口范例-二级商户余额查询</title>
+    <meta http-equiv="content-type" content="text/html"; charset="UTF-8">
+</head>
+<body style="font-size: 14px;">
+<center>二级商户上传资料</center>
+<form id="form1" action="SubMerchantSubmitFile.php" method="post">
+    <table>
+        <tr>
+            <td>二级商户名称</td>
+            <td><input name="txtSubMerId" value="tj0816" />*必输</td>
+        </tr>
+        <tr>
+            <td>文件路径+文件名</td>
+            <td><input name="fileName" value="D:\bigzip.zip" />*必输(zip包大小必须低于1.5M)</td>
+        </tr>
+        <tr>
+            <td>标志位</td>
+            <td><input name="flag" value="1" />*必输(取值1、2和3)</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>

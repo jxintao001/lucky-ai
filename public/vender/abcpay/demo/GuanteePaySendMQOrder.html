@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-担保确认请求</title>
+</head>
+<script language="javascript" type="text/javascript">
+    var txtSplitMerchantID = new Array();
+    var txtSplitAmount  = new Array();
+
+    function addLine() {
+        var row = account.insertRow();
+        for (var j = 0; j < 2; j++) {
+            var col = row.insertCell();
+            switch (j) {
+                case 0:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"txtSplitMerchantID[]\" style=\"width:95%\" value=\"\">";
+                    break;
+                case 1:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"txtSplitAmount[]\" style=\"width:95%\" value=\"\">";
+                    break;
+            }
+
+        }
+
+        form1.button.disabled = "";
+    }
+
+</script>
+<body style="font-size: 14px;">
+<center>担保确认请求</center>
+<form id="form1" action="GuanteePaySendMQOrder.php" method="post">
+    <br />
+    <table>
+        <tr>
+            <td>担保支付交易编号</td>
+            <td><input name="txtOrderNo" value="ON200412230001" />*必输</td>
+        </tr>
+        <tr>
+            <td>担保确认交易编号</td>
+            <td><input name="txtNewOrderNo" value="ON200412230001" />*必输</td>
+        </tr>
+        <tr>
+            <td>交易金额</td>
+            <td><input name="txtOrderAmount" value="0.01" />保留小数点后两位数字,*必输</td>
+        </tr>
+        <tr>
+            <td>是否垫资</td>
+            <td><input name="txtAdvancedFund" value="0" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table border="1" style="font-size: 12px;" width="50%" id="account">
+                    <tr>
+                        <td width="12%" align="center">二级商户编号</td>
+                        <td width="12%" align="center">入账金额</td>
+                    <tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type='button' value='增加' name="add" onclick="addLine()"></td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>

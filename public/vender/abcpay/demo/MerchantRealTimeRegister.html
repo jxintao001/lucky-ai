@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-实时登记三方订单</title>
+</head>
+<script language="javascript" type="text/javascript">
+    var txtSplitMerchantID = new Array();
+    var txtSplitAmount  = new Array();
+
+    function addLine() {
+        var row = account.insertRow();
+        for (var i = 1; i <= count; i++){
+            for (var j = 0; j < 2; j++) {
+                var col = row.insertCell();
+                switch (j) {
+                    case 0:
+                        col.align = "left";
+                        col.height = "30";
+                        col.innerHTML = "<input type=\"text\" name=\"SeqNo[]\" style=\"width:95%\" value=\""
+                            + i + "\">";
+                        break;
+                    case 1:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"txtSubMerchantNo[]\" style=\"width:95%\" value=\"22222222\">";
+                        break;
+                    case 2:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"txtSubMerchantName[]\" style=\"width:95%\" value=\"二级商户名称\">";
+                        break;
+                    case 3:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"txtSubAmt[]\" style=\"width:95%\" value=\"\">";
+                        break;
+                }
+
+            }
+        }
+
+
+        form1.button.disabled = "";
+    }
+
+</script>
+<body>
+<center>实时登记三方订单</center>
+<form id="form1" action="GuanteePaySendMQOrder.php" method="post">
+    <br/>
+    <table>
+        <tr>
+            <td>流水号</td>
+            <td><input name="txtRequestNo" value="202003300001" />*必输</td>
+        </tr>
+        <tr>
+            <td>订单号</td>
+            <td><input name="txtOrderNo" value="ON200412230001" />*必输</td>
+        </tr>
+        <tr>
+            <td>订单日期</td>
+            <td><input name="txtOrderDate" value="2020-03-20 11:11:11" />（yyyy-mm-dd HH:mm:ss）*必输</td>
+        </tr>
+        <tr>
+            <td>订单金额</td>
+            <td><input name="txtOrderAmount" value="0.01" />保留小数点后两位数字,*必输</td>
+        </tr>
+        <tr>
+            <td>交易类型</td>
+            <td><input name="txtTrnxCode" value="1" />*必输 包括1-POS支付、2-BMP支付、3-现金支付、4-商户自有支付方式、5-网银转账、6-其他、8-微信支付、9-支付宝支付。</td>
+        </tr>
+        <tr>
+            <td>业务类型</td>
+            <td><input name="txtTrnxType" value="SUCCESS" />*必输 本字段对应微信对账单中的“交易状态”字段，如：“SUCCESS”、“REFUND”；对应支付宝对账单中的“业务类型”字段，如：“交易”、“退款”</td>
+        </tr>
+        <tr>
+            <td>币种</td>
+            <td><input name="txtCurrencyCode" value="156" />*必输</td>
+        </tr>
+        <tr>
+            <td>用户标志</td>
+            <td><input name="txtCustomId" value="" />*必输 本字段对应微信对账单中的“用户标识”字段，如：“otDNot6uuTOGLptNsyEB97uzRUQI”；对应支付宝对账单中的“对方账户”字段，如：“136****9066”、“146***@qq.com”</td>
+        </tr>
+        <tr>
+            <td>商品名称</td>
+            <td><input name="txtProductName" value="" />*必输</td>
+        </tr>
+        <tr>
+            <td>附言</td>
+            <td><input name="txtRemark" value="" />*必输</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table border="1" style="font-size: 12px;" width="100%" id="account">
+                    <tr>
+                        <td width="15%" align="center">序号</td>
+                        <td width="15%" align="center">二级商户号</td>
+                        <td width="15%" align="center">二级商户名称</td>
+                        <td width="15%" align="center">分账金额</td>
+                    <tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type='button' value='增加' name="add" onclick="addLine()"></td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>农行网上支付平台-商户接口范例-预授权取消/确认</title>
+    <meta charset="UTF-8">
+</head>
+<body style="font-size: 14px;">
+<center>POS订单确认交易</center>
+<form id="form1" action="ConfirmPOSPayment.php" method="post">
+    <table>
+        <tr>
+            <td>请求日期</td>
+            <td><input name="txtOrderDate" value="2019/12/30" />*必输，格式要求为YYYY/MM/DD</td>
+        </tr>
+        <tr>
+            <td>子商户号</td>
+            <td><input name="txtSubMerchantNo" value="10399004" />*必输</td>
+        </tr>
+        <tr>
+            <td>订单编号</td>
+            <td><input name="txtOrderNo" value="ON200905080001" />*必输</td>
+        </tr>
+        <tr>
+            <td>序列号</td>
+            <td><input name="txtSeqNo" value="A9ECEP01155845569802" />*必输</td>
+        </tr>
+        <tr>
+            <td>交易金额</td>
+            <td><input name="txtOrderAmount" value="2.00" />保留小数点后两位数字,*必输</td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>

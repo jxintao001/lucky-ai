@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>农行网上支付平台-商户接口范例-优惠券回退</title>
+    <meta http-equiv="content-type" content="text/html"; charset="UTF-8">
+</head>
+<body style="font-size: 14px;">
+<center>优惠券退券</center>
+<form id="form1" action="SingleCouponRefund.php" method="post">
+    <table>
+        <tr>
+            <td>原支付订单号</td>
+            <td><input name="txtOrgOrderNo" value="no202012170001" />*必输</td>
+        </tr>
+        <tr>
+            <td>退优惠券订单号</td>
+            <td><input name="txtCouponRefundNo" value="1234567abc" />*必输</td>
+        </tr>
+        <tr>
+            <td>退券标识</td>
+            <td><input name="txtSign" value="1" />*必输(默认值为1)</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>
+

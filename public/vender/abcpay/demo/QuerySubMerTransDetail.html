@@ -1,0 +1,43 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-二级商户交易明细查询</title>
+</head>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>二级商户交易明细查询</center>
+    <form name="form1" action='QuerySubMerTransDetail.php' method="post">
+        <table>
+            <tr>
+                <td>二级商户号</td>
+                <td><input name='SubMerchantNo' value='0001'/>*必输</td>
+            </tr>
+            <tr>
+                <td>交易类型</td>
+                <td><input name='selType' value='1'/>*必输 取值为1(普通)、 2(担保支付)、 3(内转外转)</td>
+            </tr>
+            <tr>
+                <td>交易状态</td>
+                <td><input name='Status' value='0000'/>*必输 取值为空(全部交易)、0000(成功)、Other(失败)和ZY(状态不明确)</td>
+            </tr>
+            <tr>
+                <td>开始日期</td>
+                <td><input name='sDate' value='2020-11-26'/>*必输</td>
+            </tr>
+            <tr>
+                <td>结束日期</td>
+                <td><input name='eDate' value='2020-11-26'/>*必输</td>
+            </tr>
+            <tr>
+                <td>订单号</td>
+                <td><input name='OrderNo' value=''/></td>
+            </tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

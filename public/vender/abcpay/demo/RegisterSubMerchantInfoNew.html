@@ -1,0 +1,276 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-新版二级商户进件</title>
+</head>
+<body style="font-size: 14px;">
+<center>新版二级商户进件</center>
+<form id="form1" action='RegisterSubMerchantInfoNew.php' method="post">
+    <Label ID="lblMessage"></Label>
+    <table>
+        <tr>
+            <td>二级商户编号</td>
+            <td><input name='SubMerId' value='' />*新增二级商户时为空，修改二级商户时必输</td>
+        </tr>
+        <tr>
+            <td>新增二级商户标识</td>
+            <td><input name='SubMerFlag' value='' />*必输 新增为1，修改为0</td>
+        </tr>
+        <tr>
+            <td>二级商户名称</td>
+            <td><input name='SubMerName' value='新陆零测试' />*必输</td>
+        </tr>
+        <tr>
+            <td>二级商户经营名称</td>
+            <td><input name='SubMerchantShortName' value='测试' />*必输</td>
+        </tr>
+        <tr>
+            <td>二级商户客服电话</td>
+            <td><input name='ServicePhone' value='12345678' />*必输 只能为数字或021-85104727类型的号码</td>
+        </tr>
+        <tr>
+            <td>二级商户所属行业</td>
+            <td><input name='Industry' value='0000' />*必输 只能为4位数字</td>
+        </tr>
+        <tr>
+            <td>二级商户经营范围</td>
+            <td><input name='BusinessRange' value='' />政府、金融机构及事业单位必输</td>
+        </tr>
+        <tr>
+            <td>二级商户实际经营地址</td>
+            <td><input name='Address' value='北京市北京市东城区邮通街50号' />*必输 省-市-区-详细地址。如：北京市北京市东城区邮通街50号</td>
+        </tr>
+        <tr>
+            <td>二级商户类型</td>
+            <td><input name='SubMerType' value='1' />*必输 1个人商户 2企业商户 3个体工商户 4政府、金融机构及事业单位</td>
+        </tr>
+        <tr>
+            <td>二级商户证件类型</td>
+            <td>
+                <select name ="MerCertificateType">
+                    <option value="" selected></option>
+                    <option value="610049">个体工商户营业执照</option>
+                    <option value="610047">企业营业执照</option>
+                    <option value="610001">组织机构代码</option>
+                    <option value="611009">统一社会信用代码</option>
+                    <option value="610170">事业单位法人证书</option>
+                    <option value="610023">社会团体登记证书</option>
+                    <option value="610025">民办非企业登记证书</option>
+                    <option value="610079">农民专业合作社营业执照</option>
+                    <option value="610033">主管部门颁居民委员会（村民委员会、社区委员会）批文（长度不超过40字符）</option>
+                    <option value="610037">政府主管部门批文（长度不超过40字符）</option>
+                    <option value="610039">财政部门证明（长度不超过40字符）</option>
+                    <option value="619999">其他机构证件标识</option>
+                </select>
+                企业商户或政府、金融机构及事业单位必输
+            </td>
+        </tr>
+        <tr>
+            <td>二级商户证件编号</td>
+            <td><input name='MerCertificateNum' value='' />企业商户或政府、金融机构及事业单位必输</td>
+        </tr>
+        <tr>
+            <td>二级商户证件有效期结束时间</td>
+            <td><input name='EndCertificateValidity' value='20221231' />政府、金融机构及事业单位必输 yyyyMMdd或‘长期’</td>
+        </tr>
+        <tr>
+            <td>个人商户类别</td>
+            <td><input name='SubMerClass' value='0' />个人商户必输 0有固定经营场所的实体商户 1无固定经营场所的实体商户 2网络商户</td>
+        </tr>
+        <tr>
+            <td>法定代表人/经营者姓名</td>
+            <td><input name='ContactName' value='新陆零' />*必输</td>
+        </tr>
+        <tr>
+            <td>法定代表人/经营者证件类型</td>
+            <td>
+                <select name ="CertificateType">
+                    <option value="110001" selected>居民身份证</option>
+                    <option value="110003">临时居民身份证</option>
+                    <option value="110007">中国人民解放军军人身份证件</option>
+                    <option value="110009">中国人民武装警察身份证件</option>
+                    <option value="110019">港澳居民来往内地通行证</option>
+                    <option value="110021">台湾居民来往大陆通行证</option>
+                    <option value="110023">中华人民共和国护照</option>
+                    <option value="110025">外国护照</option>
+                    <option value="119999">其它个人证件识别标识</option>
+                </select>
+                *必输
+            </td>
+        </tr>
+        <tr>
+            <td>法定代表人/经营者证件编号</td>
+            <td><input name='CertificateNo' value='' />*必输</td>
+        </tr>
+        <tr>
+            <td>法定代表人/经营者证件有效期开始时间</td>
+            <td><input name='CertificateBegDate' value='20200101' />*必输  yyyyMMdd</td>
+        </tr>
+        <tr>
+            <td>法定代表人/经营者证件有效期结束时间</td>
+            <td><input name='FrCertEndDate' value='20991231' />*必输  若证件有效期为长期，请填写：20991231</td>
+        </tr>
+        <tr>
+            <td>法定代表人/经营者证件居住地址</td>
+            <td><input name='FrResidence' value='北京市北京市东城区邮通街50号' />*必输  省-市-区-详细地址。如：北京市北京市东城区邮通街50号</td>
+        </tr>
+        <tr>
+            <td>法定代表人/经营者是否为受益所有人</td>
+            <td><input name='FrIsController' value='1' />企业商户或个体工商户或政府、金融机构及事业单位必输，1：true，0：false</td>
+        </tr>
+        <tr>
+            <td>受益所有人姓名</td>
+            <td><input name='ControllerName' value='' />是否为受益所有人为0必输，为1必须为空</td>
+        </tr>
+        <tr>
+            <td>受益所有人证件类型</td>
+            <td>
+                <select name ="ControllerCertType">
+                    <option value="" selected></option>
+                    <option value="110001">居民身份证</option>
+                    <option value="110003">临时居民身份证</option>
+                    <option value="110007">中国人民解放军军人身份证件</option>
+                    <option value="110009">中国人民武装警察身份证件</option>
+                    <option value="110019">港澳居民来往内地通行证</option>
+                    <option value="110021">台湾居民来往大陆通行证</option>
+                    <option value="110023">中华人民共和国护照</option>
+                    <option value="110025">外国护照</option>
+                    <option value="119999">其它个人证件识别标识</option>
+                </select>
+                是否为受益所有人为0必输，为1必须为空
+            </td>
+        </tr>
+        <tr>
+            <td>受益所有人证件号码</td>
+            <td><input name='ControllerCertNo' value='' />是否为受益所有人为0必输，为1必须为空</td>
+        </tr>
+        <tr>
+            <td>受益所有人证件有效期开始时间</td>
+            <td><input name='ControllerCertBegDate' value='' />是否为受益所有人为0必输，为1必须为空 yyyyMMdd</td>
+        </tr>
+        <tr>
+            <td>受益所有人证件有效期结束时间</td>
+            <td><input name='ControllerCertEndDate' value='' />是否为受益所有人为0必输，为1必须为空 yyyyMMdd</td>
+        </tr>
+        <tr>
+            <td>受益所有人证件居住地址</td>
+            <td><input name='ControllerResidence' value='' />是否为受益所有人为0必输，省-市-区-详细地址。如：北京市北京市东城区邮通街50号</td>
+        </tr>
+        <tr>
+            <td>法定代表人/经营者是否为实际办理业务人员</td>
+            <td><input name='FrIsAgent' value='1' />*必输 1：true，0：false</td>
+        </tr>
+        <tr>
+            <td>授权办理业务人员姓名</td>
+            <td><input name='AgentName' value='' />是否为实际办理业务人员为0必输，为1必须为空</td>
+        </tr>
+        <tr>
+            <td>授权办理业务人员证件类型</td>
+            <td>
+                <select name ="AgentCertType">
+                    <option value="" selected></option>
+                    <option value="110001">居民身份证</option>
+                    <option value="110003">临时居民身份证</option>
+                    <option value="110007">中国人民解放军军人身份证件</option>
+                    <option value="110009">中国人民武装警察身份证件</option>
+                    <option value="110019">港澳居民来往内地通行证</option>
+                    <option value="110021">台湾居民来往大陆通行证</option>
+                    <option value="110023">中华人民共和国护照</option>
+                    <option value="110025">外国护照</option>
+                    <option value="119999">其它个人证件识别标识</option>
+                </select>
+                是否为实际办理业务人员为0必输，为1必须为空
+            </td>
+        </tr>
+        <tr>
+            <td>授权办理业务人员证件号码</td>
+            <td><input name='AgentCertNo' value='' />是否为实际办理业务人员为0必输，为1必须为空</td>
+        </tr>
+        <tr>
+            <td>授权办理业务人员证件有效期开始时间</td>
+            <td><input name='AgentCertBegDate' value='' />是否为实际办理业务人员为0必输，为1必须为空 yyyyMMdd</td>
+        </tr>
+        <tr>
+            <td>授权办理业务人员证件有效期结束时间</td>
+            <td><input name='AgentCertEndDate' value='' />是否为实际办理业务人员为0必输，为1必须为空 yyyyMMdd</td>
+        </tr>
+        <tr>
+            <td>授权办理业务人员证件居住地址</td>
+            <td><input name='AgentResidence' value='' />是否为实际办理业务人员为0必输，为1必须为空 省-市-区-详细地址。如：北京市北京市东城区邮通街50号</td>
+        </tr>
+        <tr>
+            <td>商户联系人姓名</td>
+            <td><input name='SubMerContactName' value='张三' />*必输</td>
+        </tr>
+        <tr>
+            <td>商户联系人证件号码</td>
+            <td><input name='SubMerContactCert' value='' />*必输</td>
+        </tr>
+        <tr>
+            <td>商户联系人联系电话</td>
+            <td><input name='SubMerMobileNum' value='13888888888' />*必输</td>
+        </tr>
+        <tr>
+            <td>商户联系人邮箱</td>
+            <td><input name='SubMerContactMail' value='abc@163.com' />*必输</td>
+        </tr>
+        <tr>
+            <td>商户联系人业务标识</td>
+            <td><input name='SubMerContactType' value='01' />*必输 01：商户信息核实联系人，02：商户巡检联系人，03：客户投诉处理联系人</td>
+        </tr>
+        <tr>
+            <td>银行账号</td>
+            <td><input name='Account' value='6228270016020564175' />*必输(若要更换已绑定的旧账号，该字段须填写新账号)</td>
+        </tr>
+        <tr>
+            <td>要更换的旧账号</td>
+            <td><input name='ReplacedAccount' value='' />若要更换已绑定的收款账号，则此项必输</td>
+        </tr>
+        <tr>
+            <td>银行账户户名</td>
+            <td><input name='AccountName' value='张三' />*必输</td>
+        </tr>
+        <tr>
+            <td>收款银行</td>
+            <td><input name='BankName' value='中国农业银行股份有限公司' />*必输</td>
+        </tr>
+        <tr>
+            <td>银行预留手机号</td>
+            <td><input name='MobilePhone' value='13819951105' />*必输</td>
+        </tr>
+        <tr>
+            <td>收款账户类型</td>
+            <td>
+                <select name ="AccountType">
+                    <option value="401" selected>借记卡</option>
+                    <option value="601">企业户</option>
+                    <option value="701">二类户</option>
+                    <option value="702">三类户</option>
+                </select>
+                *必输 401：借记卡，601：企业户，701：二类户，702：三类户
+            </td>
+        </tr>
+        <tr>
+            <td>申请服务</td>
+            <td><input name='ApplyService' value='000000' />六位数0或1组成的代码，如010101，每一位代表是否开通下列服务：第1位-PC（PC网站） 第2位-WAP（手机网站） 第3位-APP（APP支付） 第4位-JSAPI(公众号支付) 第5位-APPLET(小程序支付) 第6位-MICROPAY/F2F（付款码支付/当面付）</td>
+        </tr>
+        <tr>
+            <td>是否已签约</td>
+            <td><input name='Announce' value='' />声明已签署三方协议，1：已声明</td>
+        </tr>
+        <tr>
+            <td>附言</td>
+            <td><input name='Remark' value='' /></td>
+        </tr>
+        <tr>
+            <td>审核结果通知地址</td>
+            <td><input name='NotifyUrl' value='http://10.72.213.117:8080' /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交"></td>
+        </tr>
+    </table>
+</form>
+<a href='Merchant.html'>回商户首页</a>
+</body>
+</html>

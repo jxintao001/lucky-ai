@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>农行网上支付平台-商户接口范例-二级商户可清算金额信息查询接口</title>
+    <meta charset="UTF-8">
+</head>
+<body style="font-size: 14px;">
+<center>二级商户可清算金额信息查询</center>
+<form id="form1" action="QuerySubMerchantSettleAmount.php" method="post">
+    <table>
+        <tr>
+            <td>商e付商户号</td>
+            <td><input name="MerchantNo" value="" />*必输</td>
+        </tr>
+        <tr>
+            <td>二级商户号</td>
+            <td><input name="SubMerchantNo" value="" /></td>
+        </tr>
+        <tr>
+            <td>交易日期</td>
+            <td><input name="TrxDate" value="" />*必输，格式要求为YYYY/MM/DD</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>

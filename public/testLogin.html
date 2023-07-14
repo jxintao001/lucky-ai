@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>微信公众号登陆</title>
+</head>
+<body>
+<h1>微信公众号登陆示例</h1>
+<button id="payBtn">点击登陆</button>
+<script>
+
+
+    // 点击登陆按钮触发登陆流程
+    document.getElementById('payBtn').addEventListener('click', function() {
+        // 跳转微信公众号授权登陆
+        window.location.href = 'https://yygyl-api.hzyy.store/wechat_oa_login';
+
+    });
+</script>
+</body>
+</html>

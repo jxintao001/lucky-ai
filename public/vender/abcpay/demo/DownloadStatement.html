@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-大文件对账单下载</title>
+</head>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>大文件对账单下载 </center>
+    <form name="form1" action='DownloadStatement.php' method="post">
+        <table>
+            <tr>
+                <td>对账单日期</td>
+                <td><input name='StatementDate' value='2021/02/22'/>*必输 YYYY/MM/DD</td>
+            </tr>
+			<tr>
+				<td>对账单类型</td>
+				<td><select name="StatementType" id="StatementType" >
+						<option value="ABCPAY" selected>农行对账单</option>
+						<option value="WXALIPAY">微信支付宝对账单</option>
+						<option value="TRANSFERPAY">内转出金对账单</option>
+						<option value="PLATFORMPAY">平台商户对账单</option>
+				</select>*必输 ABCPAY: 农行对账单，WXALIPAY: 微信支付宝对账单，TRANSFERPAY: 内转出金对账单，PLATFORMPAY：平台商户对账单</td>
+			</tr>
+			<tr>
+				<td>压缩标识</td>
+				<td><select name="Zip" id="Zip" >
+						<option value="1">压缩</option>
+						<option value="0">不压缩</option>
+				</select>*必输 1：压缩，0：不压缩</td>
+			</tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

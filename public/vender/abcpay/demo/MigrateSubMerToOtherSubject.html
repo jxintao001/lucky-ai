@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-不同主体二级商户迁移</title>
+</head>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>不同主体二级商户迁移</center>
+    <form name="form1" action='MigrateSubMerToOtherSubject.php' method="post">
+        <table>
+            <tr>
+                <td>原商户号</td>
+                <td><input name='FromMerchantNo' value='No123123123'/>*必输</td>
+            </tr>
+            <tr>
+                <td>原子商户号</td>
+                <td><input name='FromSubMerchantNo' value=''/>*必输</td>
+            </tr>
+            <tr>
+                <td>自定义商户号</td>
+                <td><input name='CustomToSubMerchantNo' value='001'/></td>
+            </tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

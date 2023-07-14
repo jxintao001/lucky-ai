@@ -1,0 +1,134 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-代收支付单笔扣款</title>
+</head>
+<script type="text/javascript">
+	var SplitMerchantID = new Array();
+	var SplitAmount  = new Array();
+	function addLine() {
+        var row = account.insertRow();
+        for (var j = 0; j < 2; j++) {
+            var col = row.insertCell();
+            switch (j) {
+                case 0:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitMerchantID[]\" style=\"width:95%\" value=\"\">";
+                    break;
+                case 1:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitAmount[]\" style=\"width:95%\" value=\"\">";
+                    break;
+            }
+
+        }
+
+        form1.button.disabled = "";
+    }
+
+</script>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>代收支付单笔扣款</center>
+    <form name="form1" action='EntrustPay.php' method="post">
+        <table>
+
+            <tr>
+                <td>订单日期</td>
+                <td><input name='OrderDate' value='2004/12/23'/>*必输 （YYYY/MM/DD）</td>
+            </tr>
+            <tr>
+                <td>订单时间</td>
+                <td><input name='OrderTime' value='11:55:30' />*必输 （HH:MM:SS）</td>
+            </tr>
+            <tr>
+                <td>交易编号</td>
+                <td><input name='OrderNo' value='ON200412230001' />*必输</td>
+            </tr>
+            <tr>
+                <td>签约编号</td>
+                <td><input name='EntrustSignNo' value='lixuan20210331003' />*必输</td>
+            </tr>
+            <tr>
+                <td>账号</td>
+                <td><input name='CardNo' value='132123123' />*必输</td>
+            </tr>
+            <tr>
+                <td>交易币种</td>
+                <td><input name='CurrencyCode' value='156' />*必输 156:人民币</td>
+            </tr>
+            <tr>
+                <td>交易金额</td>
+                <td><input name='Amount' value='1.00' />*必输 保留小数点后两位数字</td>
+            </tr>
+            <tr>
+                <td>收货地址</td>
+                <td><input name='ReceiverAddress' value='' /></td>
+            </tr>
+            <tr>
+                <td>手续费金额</td>
+                <td><input name='Fee' value='' />保留小数点后两位数字</td>
+            </tr>
+			<tr>
+				<td>支付交易渠道</td>
+				<td><select name="PaymentLinkType" id="PaymentLinkType" >
+						<option value="1" selected>internet网络接入</option>
+						<option value="2">手机网络接入</option>
+						<option value="3">数字电视网络接入</option>
+						<option value="4">智能客户端</option>
+						<option value="5">线下渠道</option>
+				</select>*必输 1：internet网络接入 2：手机网络接入 3:数字电视网络接入 4:智能客户端 5：线下渠道</td>
+			</tr>
+            <tr>
+                <td>代收业务种类</td>
+                <td><input name='BusinessCode' value='110014' />*必输 
+				<br/>110001:水电煤气缴费,110002	:税费缴纳,110003:非营利性教育缴费,110006:路桥通行缴费,110008,电视账单缴费,110009:话费账单缴费,110010:宽带账单缴费,110011:公益慈善,110012:政府服务
+					<br/>110013:财政非税收入,110014:营利性教育培训,110015:公共交通,110017:物业缴费,110019:供暖费缴纳,110020:废弃物处理费用缴纳,110021:租金缴纳,110022:会员费用缴纳
+					<br/>120001:基金理财产品申购,120002:基金理财产品认购,120003:非投资型保险费用缴纳,120004:贷款还款,120015:信用卡还款,120019:投资型保险费用缴纳,120020:小贷公司贷款还款
+					<br/>130007:银行账户充值
+					<br/>150001:集团资金归集,150002:供应链资金归集</td>
+            </tr>
+            <tr>
+                <td>客户交易IP</td>
+                <td><input name='BuyIP' value='' /></td>
+            </tr>
+            <tr>
+                <td>指定商户收款账户账号</td>
+                <td><input name='ReceiveAccount' value='' /></td>
+            </tr>
+            <tr>
+                <td>指定商户收款账户户名</td>
+                <td><input name='ReceiveAccName' value='' /></td>
+            </tr>
+			<tr>
+				<td>交易是否支持向二级商户分账</td>
+				<td><select name="IsBreakAccount" id="IsBreakAccount" >
+						<option value="0" selected>不进行分账</option>
+						<option value="1">进行分账</option>
+				</select>*必输 0:否；1:是，必输 （二次清分商户填1）</td>
+			</tr>
+            <tr>
+                <td>附言</td>
+                <td><input name='MerchantRemarks' value='' />不超过100个字符</td>
+            </tr>
+			<tr>
+				<td colspan="2"><table border="1" style="font-size: 12px;" width="50%" id="account">
+                        <tr>
+                            <td width="12%" align="center">二级商户编号</td>
+                            <td width="12%" align="center">入账金额</td>
+						</tr>
+                    </table></td>
+			</tr>
+			<tr>
+				<td><input type="button" value=" 添加 " name="AddOrder"
+					onclick="addLine()" /></td>
+					</tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

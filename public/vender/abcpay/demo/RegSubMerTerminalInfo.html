@@ -1,0 +1,66 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-二级商户终端信息同步</title>
+</head>
+<body style="font-size: 14px;">
+<center>二级商户终端信息同步</center>
+<form id="form1" action='RegSubMerTerminalInfo.php' method="post">
+    <Label ID="lblMessage"></Label>
+    <table>
+        <tr>
+            <td>二级商户编号</td>
+            <td><input name='SubMerchantNo' value='' />*必输</td>
+        </tr>
+        <tr>
+            <td>门店名称</td>
+            <td><input name='ShopName' value='测试' />*必输</td>
+        </tr>
+        <tr>
+            <td>终端来源</td>
+            <td><input name='DeviceSource' value='0' />*必输 0：行内采购、1：商户自采</td>
+        </tr>
+        <tr>
+            <td>终端类型</td>
+            <td><input name='DeviceType' value='10' />*必输 10：条码支付受理终端、11：辅助受理终端（不含静态条码展示介质）、21：静态条码展示介质</td>
+        </tr>
+        <tr>
+            <td>终端序列号</td>
+            <td><input name='DeviceSeqId' value='' />唯一，终端类型为10时，该字段必填</td>
+        </tr>
+        <tr>
+            <td>生产厂商</td>
+            <td><input name='DeviceManufacturer' value='' />终端设备类型为10和11时，该字段必填</td>
+        </tr>
+        <tr>
+            <td>终端型号</td>
+            <td><input name='DeviceModel' value='' />终端设备类型为10和11时，该字段必填</td>
+        </tr>
+        <tr>
+            <td>终端是否具备定位功能</td>
+            <td><input name='EnablePosition' value='1' />1：是、0：否，终端类型为10时，该字段必填</td>
+        </tr>
+        <tr>
+            <td>终端布放地址</td>
+            <td><input name='DeviceAddress' value='北京市北京市东城区邮通街50号' />*必输 省-市-区-详细地址。如：北京市北京市东城区邮通街50号</td>
+        </tr>
+        <tr>
+            <td>终端位置经度</td>
+            <td><input name='DeviceLongitude' value='121.483521' />*必输 经度格式：1-3位整数+1位小数点+6位小数，如121.483521</td>
+        </tr>
+        <tr>
+            <td>终端位置纬度</td>
+            <td><input name='DeviceLatitude' value='31.221345' />*必输 纬度格式：1-2位整数+1位小数点+6位小数，如31.221345</td>
+        </tr>
+        <tr>
+            <td>终端状态</td>
+            <td><input name='DeviceState' value='00' />*必输 00：启用，01：注销</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交"></td>
+        </tr>
+    </table>
+</form>
+<a href='Merchant.html'>回商户首页</a>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Clodop Test</title>
+	<!-- <script src="http://localhost:18000/CLodopfuncs.js?priority=0"></script> -->
+	<script src="http://192.168.0.121:8000/CLodopfuncs.js"></script><!--  -->
+	<script type="text/javascript" src="jcpfree.js"></script>
+	<style media="print">
+		@page {
+			size:auto;/* auto is the initial value */
+			margin: 0mm;  /* this affects the margin in the printer settings */
+		}  
+	</style>
+</head>
+<body style="margin: 0; padding: 0; width: 58mm; height: auto;">
+	<a href="javascript:doPrint('preview');">打印预览</a>
+	<a href="javascript:doPrint();">直接打印</a>
+
+	<script>
+		//var LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
+
+		function demoPrint(toPreview) {
+			var strHtml = 	'<div>' + 
+    						'<span>点菜单</span><br />' +
+    						'<span>上官苑餐饮有限公司</span>' +
+						'</div>'
+			LODOP.NewPageA();
+			LODOP.SET_PRINT_PAGESIZE(3, '200mm', '5mm', '');
+			LODOP.ADD_PRINT_HTM('2mm', '2mm', "100%", "54mm", strHtml);
+			if (toPreview)
+                LODOP.PREVIEW();
+            else
+                LODOP.PRINT();
+		}
+
+		function doPrint(how) {
+			var myDoc = {
+				settings : {
+					marginLeft : 2,
+					marginRight : 2,
+					marginTop : 2,
+					marginBottom : 2
+				},
+				documents : document, // 打印页面(div)们在本文档中
+				copyrights : '杰创软件拥有版权  www.jatools.com' // 版权声明必须
+			};
+			var jcp = getJCP();
+			// 调用打印方法
+			if (how == 'preview')
+				jcp.printPreview(myDoc, false);
+			else if (how == "preview2") {
+				jcp.printPreview(myDoc, true);
+			} else if (how == 'print') {
+				jcp.print(myDoc, true);
+			} else {
+				jcp.print(myDoc, false); // 不弹出对话框打印
+			}
+		}
+	</script>
+	 
+	<div id="page1">
+		<div style="text-align: center; font-size: 18px;">结账单</div>
+		<div style="text-align: center; font-size: 18px;">兰池日式拉面</div>
+		<hr>
+	</div><!-- -->
+</body>
+</html>

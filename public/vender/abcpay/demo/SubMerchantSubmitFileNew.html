@@ -1,0 +1,111 @@
+﻿<script type="text/javascript">
+    // 上传csv格式的文件
+    function uploadfile() {
+        var reads = new FileReader();
+        file = document.getElementById('file').files[0];
+        reads.readAsDataURL(file);
+        console.log(reads);
+        reads.onload = function (e) {
+            console.log(e)
+            // document.getElementById('result').innerText = this.result
+            document.getElementsByName('SubMerCertFile')[0].value = e.target.result.substring(e.target.result.indexOf(',') + 1)
+        };
+        reads.onloadstart = function (e) {
+            console.log('onloadstart ---> ', e)
+        }
+        reads.onloadend = function (e) {
+            console.log('onloadend ---> ', e)
+        }
+        reads.onprogress = function (e) {
+            console.log('onprogress ---> ', e)
+        }
+    }
+</script>
+<html>
+<head>
+    <title>农行网上支付平台-商户接口范例-二级商户证件资料上传（新）</title>
+    <meta http-equiv="content-type" content="text/html"; charset="UTF-8">
+</head>
+<body style="font-size: 14px;">
+<center>二级商户证件资料上传（新）</center>
+<form id="form1" action="SubMerchantSubmitFileNew.php" method="post">
+    <table>
+        <tr>
+            <td>二级商户名称</td>
+            <td><input name="SubMerId" value="" />*必输</td>
+        </tr>
+        <tr>
+            <td>文件路径+文件名</td>
+            <td><input type="file" id="file" name="file" accept=".zip" onchange="uploadfile();" />*必输(zip包大小必须低于1.5M)</td>
+        </tr>
+        <tr>
+            <td>标志位</td>
+            <td><input name="Flag" value="1" />*必输(取值1、2和3)</td>
+        </tr>
+        <tr>
+            <td>终端编号</td>
+            <td><input name="DeviceId" value="1" />上传终端信息相关材料时必输</td>
+        </tr>
+        <tr>
+            <td>
+                <input id='SubMerCertFile' name="SubMerCertFile" value='' style="display:none"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                1：个体工商户/企业营业执照照片 2：政府机关/事业单位/社会组织登记证书照片 3：辅助证明材料
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                4：法定代表人/经营者身份证人像面照片 5：法定代表人/经营者身份证国徽面照片 6：法定代表人/经营者护照、通行证照片
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                7：法定代表人授权函 8：特殊资质证照影印件  9：非同名银行结算账户证明材料 10：其他证明材料
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                11：定位功能证明材料 12：固定经营场所证明材料 13：合法合规用途证明材料
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                业务规则：
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                （1）、二级商户类型为1个人商户时，如果法人/经营者证件类型为居民身份证的，标志位上送3、4和5；如果法人/经营者证件类型为非居民身份证的，标志位上送3和6。
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                （2）、二级商户类型为2企业商户和3个体工商户时，如果法人/经营者证件类型为居民身份证的，标志位上送1、4和5；如果法人/经营者证件类型为非居民身份证的，标志位上送1和6。
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                （3）、二级商户类型为4：政府机关/事业单位/社会组织时，如果法人/经营者证件类型为居民身份证的，标志位上送2、4和5；如果法人/经营者证件类型为非居民身份证的，标志位上送2和6。
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                （4）、法人/经营者是否为实际办理业务人员为0时，标志位上送7。
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                （5）、二级商户终端定位功能为是时，标志位上送11；二级商户终端定位功能为否时，标志位上送12和13。
+            </td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>

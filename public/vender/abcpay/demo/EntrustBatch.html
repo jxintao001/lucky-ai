@@ -1,0 +1,138 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+<title>农行网上支付平台-商户接口示例-代收支付批量扣款</title>
+</head>
+
+<script language="javascript">
+	function formatIndex(index) {
+		if (index < 10)
+			return "00" + index;
+		else if (index >= 10 && index < 10000)
+			return "0" + index;
+		else
+			return index;
+	}
+	function addLine() {
+
+		var count = form1.TotalCount.value;
+		if (isNaN(count)) {
+			alert("批次总笔数请输入数字！");
+			return false;
+		}
+		count = parseInt(count);
+		for (var i = 1; i <= count; i++) {
+			var index = formatIndex(i);
+			var row = batch.insertRow();
+			for (var j = 0; j < 9; j++) {
+				var col = row.insertCell();
+				switch (j) {
+				case 0:
+					col.align = "left";
+					col.height = "30";
+					col.innerHTML = "<input type=\"text\" name=\"SeqNo[]\" style=\"width:95%\" value=\""
+							+ i + "\">";
+					break;
+				case 1:
+					col.align = "center";
+					col.innerHTML = "<input type=\"text\" name=\"OrderNo[]\" style=\"width:95%\" value=\""
+							+ form1.BatchNo.value + index + "\">";
+					break;
+				case 2:
+					col.align = "center";
+					col.innerHTML = "<input type=\"text\" name=\"EntrustSignNo[]\" style=\"width:95%\" value=\"ON2021213123310301001"
+							+ i + "\">";
+					break;
+				case 3:
+					col.align = "center";
+					col.innerHTML = "<input type=\"text\" name=\"OrderAmount[]\" style=\"width:95%\" value=\"1.00\">";
+					break;
+				case 4:
+					col.align = "center";
+					col.innerHTML = "<input type=\"text\" name=\"BusinessCode[]\" style=\"width:95%\" value=\"110014\">";
+					break;
+				case 5:
+					col.align = "center";
+					col.innerHTML = "<input type=\"text\" name=\"BuyIP[]\" style=\"width:95%\" value=\"127.0.0.1\">";
+					break;
+				case 6:
+					col.align = "center";
+					col.innerHTML = "<input type=\"text\" name=\"ReceiverAddress[]\" style=\"width:95%\" value=\"北京\">";
+					break;
+				case 7:
+					col.align = "center";
+					col.innerHTML = "<input type=\"text\" name=\"CardNo[]\" style=\"width:95%\" value=\"5359100000001000\">";
+					break;
+				case 8:
+					col.align = "center";
+					col.innerHTML = "<input type=\"text\" name=\"Remark[]\" style=\"width:95%;\" value=\"测试\">";
+					break;
+				}
+
+			}
+		}
+		form1.payment.disabled = "";
+	}
+	function submitFun() {
+
+		form1.submit();
+	}
+</script>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#0000FF"
+	alink="#FF0000">
+	<center>代收支付批量扣款</center>
+	<form name="form1" action="EntrustBatch.php" method="POST">
+		<table width="100%">
+			<tr>
+				<td>批次编号</td>
+				<td><input name="BatchNo" value="0001" />*必输</td>
+			</tr>
+			<tr>
+				<td>批次日期</td>
+				<td><input name="BatchDate" value="2004/12/23" />（YYYY/MM/DD）*必输</td>
+			</tr>
+			<tr>
+				<td>批次时间</td>
+				<td><input name="BatchTime" value="11:55:30" />（HH:MM:SS）*必输，</td>
+			</tr>
+			<tr>
+				<td>批次总笔数</td>
+				<td><input name="TotalCount" value="10" /> *必输</td>
+			</tr>
+			<tr>
+				<td>批次总金额</td>
+				<td><input name="TotalAmount" value="10.00" /> *必输</td>
+				<td><input type="button" value=" 添加 " name="AddOrder"
+					onclick="addLine()" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table border="1" style="font-size: 17px;" width="100%" id="batch">
+						<tr>
+							<td align="center">序号</td>
+							<td align="center">订单号</td>
+							<td align="center">授权支付签约号</td>
+							<td align="center">交易金额</td>
+							<td align="center">交易码</td>
+							<td align="center">客户IP</td>
+							<td align="center">收货地址</td>
+							<td align="center">签约卡号</td>
+							<td align="center">备注</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+
+			<tr>
+				<td colspan="2"><input type="button" value="批量提交"
+					name="payment" disabled="disabled" onclick="submitFun()"></td>
+			</tr>
+		</table>
+	</form>
+	<center>
+		<a href="Merchant.html">回商户首页</a>
+	</center>
+</body>
+</html>

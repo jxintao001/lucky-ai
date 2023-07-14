@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>农行网上支付平台-商户接口范例-短信验证码&随机金额确认接口</title>
+    <meta charset="UTF-8">
+</head>
+<body style="font-size: 14px;">
+<center>短信验证码&随机金额确认接口</center>
+<form id="form1" action="VerifyMessageCodeAndRandomAmount.php" method="post">
+    <table>
+        <tr>
+            <td>子商户号</td>
+            <td><input name="txtSubMerchantNo" value="123456789" />*必输</td>
+        </tr>
+        <tr>
+            <td>短信验证码</td>
+            <td><input name="txtVerificationCode" value="123456" />*选输（与随机金额二者必输其一）</td>
+        </tr>
+        <tr>
+            <td>随机金额</td>
+            <td><input name="txtRandomAmount" value="0.01" />*选输（与短信验证码二者必输其一）</td>
+        </tr>
+        <tr>
+            <td>出金卡号</td>
+            <td><input name="txtAccount" value="1234567890" />*必输</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>

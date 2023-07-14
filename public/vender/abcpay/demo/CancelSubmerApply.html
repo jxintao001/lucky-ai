@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-二级商户同步请求撤销</title>
+</head>
+<script language="javascript">
+</script>
+<body style="font-size: 14px;">
+<center>二级商户同步请求撤销</center>
+<form id="form1" action='CancelSubmerApply.php' method="post">
+    <Label ID="lblMessage"></Label>
+    <br />
+    <table>
+        <tr>
+            <td>申请单号</td>
+            <td><input name='SerialNumber' value='BFECEP01194715318029' />*必输</td>
+        </tr>
+        <tr>
+            <td>二级商户号</td>
+            <td><input name='SubMerchantNo' value='103992211100042' />*必输</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type='button' value='提交' name="payment"  onclick="form1.submit()"></td>
+        </tr>
+    </table>
+</form>
+<a href='Merchant.html'>回商户首页</a>
+</body>
+</html>

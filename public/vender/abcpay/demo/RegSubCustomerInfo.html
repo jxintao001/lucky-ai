@@ -1,0 +1,148 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-客户信息同步</title>
+</head>
+<script language="javascript">
+    function formatIndex(index) {
+        if(index < 10)
+            return "00" + index ;
+        else if(index >= 10 && index < 100)
+            return "0" + index ;
+        else
+            return index ;
+    }
+</script>
+<body style="font-size: 14px;">
+<center>客户信息同步</center>
+<form id="form1" action='RegSubCustomerInfo.php' method="post">
+    <Label ID="lblMessage"></Label>
+    <br />
+    <table>
+        <tr>
+            <td>二级客户请求号</td>
+            <td><input name='SerialNo' value='123448' />二级客户编号和二级客户请求号必须输入且只能输入一个</td>
+        </tr>
+        <tr>
+            <td>二级客户编号</td>
+            <td><input name='SubMerId' value='' />二级客户编号和二级客户请求号必须输入且只能输入一个</td>
+        </tr>
+        <tr>
+            <td>二级客户名称</td>
+            <td><input name='SubMerName' value='新陆零测试' />*必输</td>
+        </tr>
+        <tr>
+            <td>二级客户类型</td>
+            <td>
+                <select name ="SubMerType">
+                    <option Value="P" selected>个人客户</option>
+                </select>
+                *必输 P：个人客户(固定)
+            </td>
+        </tr>
+        <tr>
+            <td>二级客户种类</td>
+            <td>
+                <select name ="SubMerSort">
+                    <option Value="5" selected>普通类</option>
+                </select>
+                *必输 5：普通类
+            </td>
+        </tr>
+        <tr>
+            <td>法人/经营者姓名</td>
+            <td><input name='ContactName' value='新陆零' />*必输 二级客户类型为“个人客户”时，请填写个人身份证件上的姓名</td>
+        </tr>
+        <tr>
+            <td>法人/经营者证件类型</td>
+            <td>
+                <select name ="CertificateType">
+					<option value="I" selected>身份证</option>
+					<option value="P">护照</option>
+					<option value="G">军官证</option>
+					<option value="U">其他证件</option>
+                </select>
+                *必输 I:身份证，P:护照，G:军官证，U:其他证件
+            </td>
+        </tr>
+        <tr>
+            <td>法人/经营者证件编号</td>
+            <td><input name='CertificateNo' value='35010219920907625X' />二级客户类型为“个人客户”时，请填写个人身份证号码</td>
+        </tr>
+        <tr>
+            <td>银行账号</td>
+            <td><input name='Account' value='6228270016020564175' />*必输</td>
+        </tr>
+        <tr>
+            <td>银行账户户名</td>
+            <td><input name='AccountName' value='新陆零' />*必输 账户类型为个人银行卡（401：借记卡、701：二类户，702：三类户）户名必须与法人/经营者姓名一致</td>
+        </tr>
+        <tr>
+            <td>开户银行名称</td>
+            <td><input name='BankName' value='中国农业银行股份有限公司' />*必输</td>
+        </tr>
+        <tr>
+            <td>银行预留手机号</td>
+            <td><input name='MobilePhone' value='13819951105' />*必输</td>
+        </tr>
+        <tr>
+            <td>账户类型</td>
+            <td>
+                <select name ="AccountType">
+					<option value="401" selected>借记卡</option>
+					<option value="701">二类户</option>
+					<option value="702">三类户</option>
+                </select>
+                *必输 401：借记卡，701：二类户，702：三类户
+            </td>
+        </tr>
+
+        <tr>
+            <td>地址</td>
+            <td><input name='Address' value='广州市白云区黄边北路时代玫瑰园' />*必输</td>
+        </tr>
+        <tr>
+            <td>声明已签署三方协议</td>
+            <td>
+                <select name ="Announce">
+                        <option value="1" selected>已声明</option>
+                </select>
+                *必输 1：已声明
+            </td>
+        </tr>
+        <tr>
+            <td>企业商户名称</td>
+            <td><input name='CompanyName' value='' />暂不支持企业商户</td>
+        </tr>
+        <tr>
+            <td>企业商户证件类型</td>
+            <td><input name='CompanyCertType' value='' />暂不支持企业商户</td>
+        </tr>
+        <tr>
+            <td>企业商户证件号码</td>
+            <td><input name='CompanyCertNo' value='' />暂不支持企业商户</td>
+        </tr>
+        <tr>
+            <td>审核结果通知地址</td>
+            <td><input name='NotifyUrl' value='http://10.72.213.117:8080' /></td>
+        </tr>
+        <tr>
+            <td>附言</td>
+            <td><input name='Remark' value='' /></td>
+        </tr>
+        <tr>
+            <td>客户负责人联系电话</td>
+            <td><input name='MerMobilePhone' value='13819951105' /></td>
+        </tr>
+        <tr>
+            <td>要更改的二级客户账户账号</td>
+            <td><input name='ReplacedAccount' value='' /></td>
+        </tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="提交"></td>
+		</tr>
+    </table>
+</form>
+<a href='Merchant.html'>回商户首页</a>
+</body>
+</html>

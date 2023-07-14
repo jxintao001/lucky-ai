@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-获取调用凭证</title>
+</head>
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF'
+      alink='#FF0000'>
+<CENTER>获取调用凭证</CENTER>
+<form name="form1" action='GetWeiXinAuthInfo.php' method="post">
+    <table>
+        <tr>
+            <td>门店编号</td>
+            <td><input type="text" name="StoreId" value="NFZF2000001">*必输</td>
+        </tr>
+        <tr>
+            <td>门店名称</td>
+            <td><input type="text" name="StoreName" value="NFZF2000001">*必输</td>
+        </tr>
+        <tr>
+            <td>终端设备编号</td>
+            <td><input type="text" name="DeviceId" value="BD7102033005139">*必输</td>
+        </tr>
+        <tr>
+            <td>附加字段</td>
+            <td><input type="text" name="Attach" value="">字段格式使用Json，选输</td>
+        </tr>
+        <tr>
+            <td>初始化数据</td>
+            <td><input type="text" name="RawData"
+                       value="KstAuVx0YpEWKL2zEJMZsfR+DvFEbbS/T7smTK2T0TIHBIK6tf/2ct80RgHHTczGJWZujBHVKmz7qPdy18GF2DT/ScueXLOwD5IWYXmnvLelW88axFQh3gNiydsdwTc7d4M2b4YL165sExnXXEmRarRxdmcuxP5sGyBgx3op2MaKyn+edWA4aSmxwQyX2AG/242qtuOvjO7CrtHXMS9hRTKu6XmAhjZgsox3QfXLa2c1WHXUFb6uQ3ZE2SYkfHPtroHwwgxA/qBixp6h0TY40KurTIfXBIXuvwDRJhAV9JUnHJCyiuQGc0IG9wMO1cxZ6lKnzR9t5w6t4BdQY9sHyXVWMRVDVJoq1peRzZj/2cjdR2o/UMhiV5aVq1ytTt3uxXc84wbUW4rWGz6QyS/nLjGapv3jy09stbPOLcYa36CDoFWqdnjDP55IcVHb2qQioeN4jTsvPS5ncJ/QIRAvvtW9FDc1lFRexi0FMp4Rbx3CO+cAXR1yZmtr8qaoafsOA2vGiUBUQ5uxHfRSI/PoPKbkEZlhDK19GQ9kTPggC631uLTplX/6a3PksMMrlTjGSZj8mnDA4PtxRA8F5XS6XjKzGzxxV95eTXI=" />由微信人脸SDK的接口返回，*必输</td>
+        </tr>
+        <tr>
+            <td>子商户绑定的公众号/小程序appid</td>
+            <td><input type="text" name="SubAppId" value="" />选输</td>
+        </tr>
+        <tr>
+            <td>当前时间</td>
+            <td><input type="text" name="Now" value="1636356407" />取当前时间，10位unix时间戳,*必输</td>
+        </tr>
+        <tr>
+            <td>版本号</td>
+            <td><input type="text" name="VersionNo" value="1" />固定为1,*必输</td>
+        </tr>
+        <tr>
+            <td>签名类型</td>
+            <td><input type="text" name="SignType" value="MD5" />目前支持HMAC-SHA256和MD5,默认为MD5,*必输</td>
+        </tr>
+        <tr>
+			<td colspan="2"><input type="submit" value="提交"></td>
+		</tr>
+    </table>
+</form>
+<center>
+    <a href='Merchant.html'>回商户首页</a>
+</center>
+</body>
+</html>

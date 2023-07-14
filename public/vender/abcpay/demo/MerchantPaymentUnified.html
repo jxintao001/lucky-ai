@@ -1,0 +1,223 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-微信支付请求</title>
+</head>
+<script language="javascript" type="text/javascript">
+
+
+    function SelectedIndexChanged() {
+        var paytypeid = document.getElementById("PayTypeID").value;
+        if (paytypeid == "ImmediatePay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        }
+        else if (paytypeid == "PreAuthPay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        }
+        else if (paytypeid == "DividedPay") {
+            installmentCode.style.display = "inline";
+            installmentNum.style.display = "inline";
+
+        }
+    }
+    
+        function addLine() {
+        var row = account.insertRow();
+        for (var j = 0; j < 2; j++) {
+            var col = row.insertCell();
+            switch (j) {
+                case 0:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitMerchantID[]\" style=\"width:95%\" value=\"\">";
+                    break;
+                case 1:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitAmount[]\" style=\"width:95%\" value=\"\">";
+                    break;
+            }
+
+        }
+
+        form1.button.disabled = "";
+    }
+
+</script>
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+    <form name="form1" action='MerchantPaymentUnified.php' method="post">
+        <table>
+             <tr>
+                <td>交易类型 </td>
+                <td>
+					<select name="PayTypeID" onclick="SelectedIndexChanged()">
+					  <option value ="NATIVE">扫码支付</option>
+					  <option value ="JSAPI">公众号（小程序）支付</option>
+					  <option value="APP">app支付</option>
+					  <option value="MICROPAY">刷卡支付</option>
+					  <option value="MWEB">H5支付</option>
+					</select>*必输
+				<td>
+            </tr>
+            <tr>
+                <td>订单日期</td>
+                <td><input name='OrderDate' value='2017/03/01'>（YYYY/MM/DD）</td>
+            </tr>
+            <tr>
+                <td>订单时间</td>
+                <td><input name='OrderTime' value='11:55:30'>（HH:MM:SS）</td>
+            </tr>
+            <tr>
+                <td>订单支付有效期</td>
+                <td><input name='orderTimeoutDate' value='20171231000000' />精确到秒，选输</td>
+            </tr>
+            <tr>
+                <td>交易编号</td>
+                <td><input name='OrderNo' value='ON20170301001'/>必输</td>
+            </tr>
+            <tr>
+            <tr>
+                <td>交易币种</td>
+                <td><input name='CurrencyCode' value='156' />156:人民币,*必输</td>
+            </tr>
+            <tr>
+                <td>交易金额</td>
+                <td><input name='PaymentRequestAmount' value='1.00' />保留小数点后两位数字,*必输</td>
+            </tr>
+            <tr>
+                <td>手续费金额</td>
+                <td><input name='Fee' value='' />保留小数点后两位数字,选输</td>
+            </tr>
+            <tr>
+                <td>指定付款账户</td>
+                <td><input name='AccountNo' value='' />选输,交易类型为“公众号（小程序）支付”时必输，上送子商户的公众号APPID，对应微信统一下单接口中的sub_appid；
+              交易类型为"app支付"时必输，上送子商户的应用APPID，对应微信统一下单接口中的sub_appid；交易类型为“刷卡支付”时必输，上送授权码auth_code</td>
+            </tr>
+            <tr>
+                <td>用户在子商户appid下的唯一标识</td>
+                <td><input name='OpenID' value='' />选输,交易类型为"公众号（小程序）支付"时必输，对应微信统一下单接口中的sub_openid</td>
+            </tr>
+            <tr>
+                <td>订单说明</td>
+                <td><input name='OrderDesc' value='' />选输,支付账户类型为"8:微信支付"时必输</td>
+            </tr>
+            <tr>
+                <td>收货地址</td>
+                <td><input name='ReceiverAddress' value='北京' />选输</td>
+            </tr>
+            <tr>
+                <td>分期标识</td>
+                <td><input name='InstallmentMark' value='0' />1：分期；0：不分期。*必输</td>
+            </tr>
+            <tr id="installmentCode" style="display: none;">
+                <td>分期代码</td>
+                <td><input name='InstallmentCode' value='' /> 分期时必输</td>
+            </tr>
+            <tr id="installmentNum" style="display: none;">
+                <td>分期期数</td>
+                <td><input name='InstallmentNum' value='' />0-99,分期时必输</td>
+            </tr>
+            <tr>
+                <td>商品种类</td>
+                <td><input name='CommodityType' value='0101' />
+                </td>
+            </tr>
+            <tr>
+	            <td></td>
+	            <td>
+					<br>0101:支付账户充值
+					<br>0201:虚拟类,0202:传统类,0203:实名类
+					<br>0301:本行转账,0302:他行转账
+					<br>0401:水费,0402:电费,0403:煤气费,0404:有线电视费,0405:通讯费,0406:物业费,0407:保险费,0408:行政费用,0409:税费,0410:学费,0499:其他
+					<br>0501:基金,0502:理财产品,0599:其他, *必输
+				</td>
+			</tr>
+            <tr>
+                <td>客户交易IP</td>
+                <td><input name='BuyIP' value='' />选输</td>
+            </tr>
+            <tr>
+                <td>订单保存时间</td>
+                <td><input name='ExpiredDate' value='30' />单位:天，选输</td>
+            </tr>
+            <tr>
+                <td>支付方式</td>
+                <td><input name='PaymentType' value='8' />8：微信支付 *必输</td>
+            </tr>
+            <tr>
+                <td>交易渠道</td>
+                <td><input name='PaymentLinkType' value='1' onkeyup="CheckValue()" />1：internet网络接入 2：手机网络接入 3:数字电视网络接入 4:智能客户端 5：线下渠道 *必输</td>
+            </tr>
+             <tr>
+                <td>通知方式</td>
+                <td><input name='NotifyType' value='1' />1：服务器通知，*必输</td>
+            </tr>
+            <tr>
+                <td>通知URL地址</td>
+                <td><input name='ResultNotifyURL' value='http://yourwebsite/appname/MerchantResult.jsp' />*必输</td>
+            </tr>
+            <tr>
+                <td>附言</td>
+                <td><input name='MerchantRemarks' value='' />不超过100个字符，选输</td>
+            </tr>
+            <tr>
+                <td>大商户模式</td>
+                <td><input name='MerModelFlag' value='' />选输 0:普通模式 1:大商户模式</td>
+            </tr>
+            <tr>
+                <td>二级商户编号</td>
+                <td><input name='SubMerchantID' value='' />选输</td>
+            </tr>
+  
+            <tr>
+                <td>限制贷记卡</td>
+                <td><input name='LimitPay' value='no_credit' />选输</td>
+            </tr>
+            <tr>
+                <td>场景类型</td>
+                <td><input name='H5SceneType' value='Wap' />选输</td>
+            </tr>            
+            <tr>
+                <td>场景URL</td>
+                <td><input name='H5SceneUrl' value='https://pay.qq.com' />选输</td>
+            </tr>            
+            <tr>
+                <td>场景名称</td>
+                <td><input name='H5SceneName' value='腾讯充值' />选输</td>
+            </tr>            
+            <tr>
+                <td>交易是否支持分账（(或分账模板分账)）</td>
+                <td><input name='IsBreakAccount' value='0' />0:否；1:是，*必输（二次清分商户或者分账模板填1）</td>
+            </tr>
+            <tr>
+                <td>分账模板编号</td>
+                <td><input name='txtSplitAccTemplate' value='0' />分账模板与二级商户一栏只能输入一个</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table border="1" style="font-size: 12px;" width="50%" id="account">
+                        <tr>
+                            <td width="12%" align="center">二级商户编号</td>
+                            <td width="12%" align="center">入账金额</td>
+                            <tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type='button' value='增加' name="add" onclick="addLine()"></td>
+
+            </tr>
+            <tr>
+                <td>设备终端号</td>
+                <td><input name='TerminalNo' value='' />终端号</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit">
+        </table>
+    </form>
+    <center>
+        <a href='MerchantUnified.html'>回商户首页</a></center>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Clodop Test</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="jcpfree.js"></script>
+	<style media="print">
+		@page {
+			size: auto;/* auto is the initial value */
+			margin: 0mm;  /* this affects the margin in the printer settings */
+		}  
+	</style>
+</head>
+<body>
+	<div style="margin: auto; width: 100mm;">
+
+		<div style="text-align: center; line-height: 45px; border-bottom: solid #666 1px; margin: 10px 0;">
+			<a href="javascript:doPrint('preview');">打印预览</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="javascript:doPrint();">直接打印</a>
+		</div>
+
+		<div id="page1" style="width: 100mm; height: 180mm; /*width: 98mm; height: 178mm; /*border: solid 1mm #FFF;*/">
+			<div style="width: 100%; height: 9mm; border-bottom: dotted 1px #000;">
+				<span style="float: right; font-size: 16pt; font-family: '思源黑体 CN Normal'; line-height: 11mm; margin-right: 1mm;">国际快递</span>
+			</div>
+
+			<div style="width: 100%; height: 13mm; border-bottom: dotted 1px #000; text-align: center;">
+				<span style="font-size: 21pt; font-family: '思源黑体 CN Normal'; line-height: 17mm;" class="marker"> </span>
+			</div>
+
+			<div style="width: 100%; height: 10mm; border-bottom: dotted 1px #000; text-align: center;/* background: url(img/ji.png) no-repeat left; background-size: auto 11mm;*/">
+				<!-- <img src="img/ji.png" style="position: absolute; left: 0; top: 0; height: 11mm; width: auto;"> -->
+				<span style="width: 7mm; height: 7mm; border: solid 0.5mm #000; text-align: center; line-height: 9mm; font-size: 15pt; font-family: '思源黑体 CN Normal'; position: absolute; left: 1.3mm; top: 1mm;">集</span>
+				<span style="position: absolute; left: 10mm; top: 2.2mm; text-align: left; line-height: 3.3mm; font-size: 8pt; font-family: '思源黑体 CN Light';">Exchange<br />Office</span>
+				<span style="font-size: 16pt; font-family: '思源黑体 CN Bold'; line-height: 14mm;" class="exchange"> </span>
+			</div>
+
+			<div style="width: 100%; height: 32mm; border-bottom: dotted 1px #000;">
+				<div style="width: 17mm; height: 12mm; top: 0; left: 0; position: absolute; border-bottom: dotted 1px #000; text-align: center; line-height: 100%; padding-top: 4mm;">
+					<span style="font-size: 10pt; font-family: '思源黑体 CN Normal';">收件人</span>
+					<span style="font-size: 6pt; font-family: '思源黑体 CN Light';">To/Consignee</span>
+				</div>
+				<div style="width: 17mm; height: 12mm; bottom: 0; left: 0; position: absolute; text-align: center; line-height: 100%; padding-top: 4mm">
+					<span style="font-size: 10pt; font-family: '思源黑体 CN Normal';">寄件人</span>
+					<span style="font-size: 6pt; font-family: '思源黑体 CN Light';">From/Shipper</span>
+				</div>
+
+				<div style="width: 52mm; height: 12mm; top:0; left: 17mm; position: absolute; border-bottom: dotted 1px #000; border-left:solid 1px #000; border-right:solid 1px #000; line-height: 105%; padding: 2mm;">
+					<span style="font-size: 10pt; font-family: '思源黑体 CN Bold';" class="receiver_name"> </span>&nbsp;&nbsp;
+					<span style="font-size: 10pt; font-family: '思源黑体 CN Bold';" class="receiver_phone"> </span><br />
+					<span style="font-size: 9pt; font-family: '思源黑体 CN Light';" class="receiver_address"> </span>
+				</div>
+				<div style="width: 52mm; height: 10mm; bottom:0; left: 17mm; position: absolute; border-left:solid 1px #000; border-right:solid 1px #000; line-height: 100%; padding: 3mm 2mm;">
+					<span style="font-size: 10pt; font-family: '思源黑体 CN Light';" class="sender_name"> </span>&nbsp;&nbsp;
+					<span style="font-size: 10pt; font-family: '思源黑体 CN Light';" class="sender_phone"> </span><br />
+					<span style="font-size: 9pt; font-family: '思源黑体 CN Light';" class="sender_address"> </span>
+				</div>
+
+				<div style="width: 23mm; height: 28mm; top: 0; right: 0; position: absolute; padding: 2mm; font-size: 6pt; font-family: '思源黑体 CN Light';">
+					<div style="margin-bottom:2mm;"><span style="width: 5pt; height: 5pt; font-size: 5pt; border: solid #000 1px; float: left; margin-right: 0.5mm;"></span><span>重量 /Weight:</span></div>
+					<div style="margin-bottom:2mm;"><span style="width: 5pt; height: 5pt; font-size: 5pt; border: solid #000 1px; float: left; margin-right: 0.5mm;"></span><span>价值 /Value:</span></div>
+					<div style="margin-bottom:2mm;"><span style="width: 5pt; height: 5pt; font-size: 5pt; border: solid #000 1px; float: left; margin-right: 0.5mm;"></span><span>代收 /Payable:</span></div>
+					<div style="margin-bottom:2mm;"><span style="width: 5pt; height: 5pt; font-size: 5pt; border: solid #000 1px; float: left; margin-right: 0.5mm;"></span><span>长 (CM) /L:</span></div>
+					<div style="margin-bottom:2mm;"><span style="width: 5pt; height: 5pt; font-size: 5pt; border: solid #000 1px; float: left; margin-right: 0.5mm;"></span><span>宽 (CM) /W:</span></div>
+					<div><span style="width: 5pt; height: 5pt; font-size: 5pt; border: solid #000 1px; float: left; margin-right: 0.5mm;"></span><span>高 (CM) /H:</span></div>
+				</div>
+			</div>
+
+			<div style="width: 100%; height: 22mm; border-bottom: dotted 1px #000;" class="bill_no"> </div>
+
+			<div style="width: 100%; height: 22mm; border-bottom: solid 1px #000;">
+				<div style="width: 47mm; height: 17mm; top:0; left: 0; position: absolute; padding: 2.5mm 1.5mm; font-size: 6pt; font-family: '思源黑体 CN Light';">
+					<div style="text-align: justify;"><span>快件送达收件人地址, 经收件人或收件人 (寄件人) 允许的代收人签字, 视为送达, 您的签字代表您已签收此包裹, 并已确认商品信息无误, 包装完好, 没有划痕, 破损等方面质量问题。</span></div>
+					<div style="text-align: right; position: absolute; right: 1.5mm; bottom: 0;"><span>2017-8-24 10:22:01</span></div>
+				</div>
+				<div style="width: 23mm; height: 17mm; top:0; left: 50mm; position: absolute; padding: 2.5mm 1.5mm; border-left:solid 1px #000; border-right:solid 1px #000; font-size: 6pt; font-family: '思源黑体 CN Light';">
+					<div>
+						<span style="font-size: 8pt; display: block;">签收</span>
+						<span style="font-size: 6pt; display: block; margin-top: -3pt;">Signature required:</span>
+					</div>
+
+					<div style="position: absolute; bottom: 0;">
+						<span style="font-size: 8pt; display: block;">时间</span>
+						<span style="font-size: 6pt; display: block; margin-top: -3pt;">Date:</span>
+					</div>
+				</div>
+				<div style="width: 21mm; height: 19mm; top:0; right: 0; position: absolute; padding: 1.5mm; text-align: center;"><img src="img/qr.png" style="width: auto; height: 100%;" /></div>
+			</div>
+
+			<div style="width: 100%; height: 14mm; border-bottom: dotted 1px #000;"></div>
+
+			<div style="width: 100%; height: 19mm; border-bottom: dotted 1px #000; font-size: 8pt; font-family: '思源黑体 CN Light'; line-height: 120%;">
+				<div style="width: 47mm; height: 19mm; border-right: solid 1px #000; top: 0; left: 0; position: absolute; padding: 0 1.5mm;">
+					<span style="line-height: 20pt;">收件人信息 /To:</span><br />
+					<span class="receiver_name"> </span>&nbsp;&nbsp;
+					<span class="receiver_phone"> </span><br />
+					<span class="receiver_address"> </span>
+				</div>
+				<div style="width: 47mm; height: 19mm; top: 0; right: 0; position: absolute; padding: 0 1.5mm;">
+					<span style="line-height: 20pt;">寄件人 /From：</span><br />
+					<span class="sender_name"> </span>&nbsp;&nbsp;
+					<span class="sender_phone"> </span><br />
+					<span class="sender_address"> </span>
+				</div>
+			</div>
+
+			<div style="width: 100%; height: 23mm; border-bottom: dotted 1px #000; font-size: 8pt; font-family: '思源黑体 CN Light';">
+				<span style="position: absolute; left: 1.5mm; top: 2mm;">内件描述 /Description of Contents:</span>
+				<span style="position: absolute; right: 1.5mm; bottom: -1mm;">已验视 /Visual inspection</span>
+			</div>
+
+			<div style="width: 100%; height: 13mm; text-align: center; line-height: 16mm; font-size: 12.5pt; font-family: '思源黑体 CN Bold';">
+				123456789123456789
+			</div>
+
+		</div>
+
+	</div>
+	
+	<script>
+		var urldata = "http://api.hihgo.com";
+		var billStr = (window.location.search).split('=')[1]; 
+		if (!billStr) { 
+			alert('无法获取运单号ID');
+
+			var billId = '961';
+			//getBillJson(billId);
+			getBillInfo(billId);
+		} else {
+			var billArr = billStr.split(','); //console.log(billArr);
+			//go(billArr.shift());
+			getBillInfo(billArr.shift());
+		}
+
+		function doPrint(how) {
+			//console.log(billArr.join());
+			var myDoc = {
+				settings : {
+					marginLeft : 0,
+					marginRight : 0,
+					marginTop : 0,
+					marginBottom : 0
+				},
+				documents : document, // 打印页面(div)们在本文档中
+				copyrights : '杰创软件拥有版权  www.jatools.com', // 版权声明必须
+				listener : function(e) {  
+           			console.log(decodeEvent(e));  
+				},  
+				done: function() {  
+					console.log("打印结束.");
+					//window.location.href = 'http://api.hihgo.com/jcp/moban.html?bills=' + billArr.join();
+				}
+			};
+
+			var jcp = getJCP();
+			// 调用打印方法
+			if (how == 'preview')
+				jcp.printPreview(myDoc, false);
+			else if (how == "preview2") {
+				jcp.printPreview(myDoc, true);
+			} else if (how == 'print') {
+				jcp.print(myDoc, true);
+			} else {
+				jcp.print(myDoc, false); // 不弹出对话框打印
+			}
+		}
+
+		function go(bills){
+			var billsLen = bills.length;
+
+			for (var i = 0; i < billsLen; i++) {
+				console.log(bills[i]);
+				getBillInfo(bills[i]);
+
+				//setTimeout(function(){
+				//	getBillInfo(bills[i]);
+				//}, 2000);
+			}
+		}
+
+		/* ---
+		function getBillJson(id){
+			$.getJSON(urldata + "/waybills/" + id, function(json){
+				console.log(json);
+				setBillPage(json);
+			}); 
+		} */
+
+		function getBillInfo(id){
+			demoAjax({
+				url: "/waybills/" + id,
+				async: false,
+				successBack: function(res){
+					console.log(res);
+					setBillPage(res);
+				}
+			});
+		}
+
+		function callbackFun(){
+			//--jsonpCallback
+		}
+
+		function setBillPage(obj){
+			$('.marker').text(obj.marker);
+			$('.exchange').text(obj.exchange_office);
+
+			$('.receiver_name').text(obj.receiver.contact_name);
+			$('.receiver_phone').text(obj.receiver.contact_phone);
+			$('.receiver_address').text(obj.receiver.full_address);
+
+			$('.sender_name').text(obj.sender.sender_name);
+			$('.sender_phone').text(obj.sender.phone);
+			$('.sender_address').text(obj.sender.province + obj.sender.city + obj.sender.district + obj.sender.address);
+
+			$('.bill_no').text(obj.no);
+
+			doPrint();
+		}
+
+		function demoAjax(opt){
+			$.ajax({
+				url:urldata+opt.url,//数据的接口的路径
+				dataType:opt.dataType||'json',
+				type: opt.type||"get",//请求的方式  默认是get
+				data:opt.data||"",//请求的参数  默认是空
+				async:opt.async||true,//是否是异步，默认是异步
+				contentType:opt.contenttype||'application/x-www-form-urlencoded;charset=utf-8',
+				// json: "callbackFun",
+				// jsonpCallback:"callbackFun",
+				timeout: 30000,
+				// crossDomain: true,
+				// xhrFields:{withCredentials: true} ,
+				// withCredentials : true,
+				// beforeSend:function(be){
+				// opt.beforeSendBack instanceof Function&&opt.beforeSendBack(be);
+				// },  
+				success: function(res) {
+					opt.successBack instanceof Function&&opt.successBack(res);
+				},
+				error: function(xhr, type, errorThrown){
+					console.log(xhr)
+					console.log(JSON.stringify(xhr));
+					console.log(type);
+					console.log(errorThrown);
+				}
+			});
+		}
+	</script>
+
+</body>
+</html>

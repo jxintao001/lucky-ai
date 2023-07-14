@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-校培监管资金划拨申请交易</title>
+</head>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>校培监管资金划拨申请交易</center>
+    <form name="form1" action='PayForAnotherApply.php' method="post">
+        <table>
+
+            <tr>
+                <td>二级商户编号</td>
+                <td><input name='SubMerId' value='AAAA'/>*必输</td>
+            </tr>       
+            <tr>
+                <td>收款账号</td>
+                <td><input name='Account' value='6231680012001640177' />*必输</td>
+            </tr>
+            <tr>
+                <td>收款账户名</td>
+                <td><input name='AccountName' value='张三' />*必输</td>
+            </tr>
+            <tr>
+                <td>出金金额</td>
+                <td><input name='TrxAmount' value='2.00' />不关联支付订单时必须设定</td>
+            </tr>
+            <tr>
+                <td>是否关联支付订单编号</td>
+                <td><input name='DrawingFlag' value='1' />0:不关联，1:关联</td>
+            </tr>
+            <tr>
+                <td>关联的支付订单号</td>
+                <td><input name='OrderNo' value='No12321423' /></td>
+            </tr>
+            <tr>
+                <td>附言</td>
+                <td><input name='Remark' value='出金' /></td>
+            </tr>
+            <tr>
+                <td>他行行号</td>
+                <td><input name='RecBankNo' value='105100010029' />出金至他行卡且金额大于50000时必须上送</td>
+            </tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

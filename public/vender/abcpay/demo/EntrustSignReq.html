@@ -1,0 +1,90 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-签约申请</title>
+</head>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<center>签约申请</center>
+    <form name="form1" action='EntrustSignReq.php' method="post">
+        <table>
+
+            <tr>
+                <td>签约编号</td>
+                <td><input name='SignNo' value='SignNo'/>*必输</td>
+            </tr>       
+            <tr>
+                <td>代收业务种类</td>
+                <td><input name='BusinessCode' value='110014' />*必输</td>
+            </tr>
+            <tr>
+                <td>签约渠道</td>
+                <td><input name='SignChannel' value='MERC' />*必输 1：MERC 2：PERB</td>
+            </tr>
+            <tr>
+                <td>签约有效期</td>
+                <td><input name='InValidDate' value='2022/12/21' />*必输 YYYY/MM/DD</td>
+            </tr>
+            <tr>
+                <td>代收扣款时间单位</td>
+                <td><input name='PayUnit' value='04' />*必输</td>
+            </tr>
+            <tr>
+                <td>代收扣款时间步长</td>
+                <td><input name='PayStep' value='3' />*必输 时间单位为00、步长为1时，按年扣款；时间单位为04，步长为3时，按季扣款；时间单位为04，步长为1时，按月扣款；时间单位为07，步长为7时，按周扣款；时间单位为07，步长为1时，按日扣款。</td>
+            </tr>
+			<tr>
+				<td>签约账户类型</td>
+				<td><select name="CustomAccType" id="CustomAccType" >
+						<option value="1" selected>农行借记卡</option>
+						<option value="3">农行贷记卡</option>
+						<option value="A">农行卡合并</option>
+				</select>*必输 1: 农行借记卡 3: 农行贷记卡 A: 农行卡合并</td>
+			</tr>
+            <tr>
+                <td>签约卡号</td>
+                <td><input name='CustomAccNo' value='622XXXXXXXXXXXXXXX' />*必输</td>
+            </tr>
+            <tr>
+                <td>签约手机号</td>
+                <td><input name='CustomPhone' value='133XXXXXXXX' />*必输</td>
+            </tr>
+            <tr>
+                <td>签约账户户名</td>
+                <td><input name='CustomName' value='XXX' />*必输</td>
+            </tr>
+			<tr>
+				<td>客户证件类型</td>
+				<td><select name="CustomCertType" id="CustomCertType" >
+						<option value="I" selected>公民身份证</option>
+				</select>*必输 客户证件类型，I: 公民身份证</td>
+			</tr>
+            <tr>
+                <td>客户证件号</td>
+                <td><input name='CustomCertNo' value='110105XXXXXXXXXXXX' />*必输</td>
+            </tr>
+            <tr>
+                <td>代收扣款时间描述</td>
+                <td><input name='SignDesc' value='' /></td>
+            </tr>
+            <tr>
+                <td>二级商户号</td>
+                <td><input name='SubMerchantID' value='' /></td>
+            </tr>
+            <tr>
+                <td>代收交易限额</td>
+                <td><input name='SinglePaymentLimit' value='' /></td>
+            </tr>
+            <tr>
+                <td>代收扣款频次</td>
+                <td><input name='PayFrequency' value='' /></td>
+            </tr>
+            <tr>
+				<td colspan="2"><input type="submit" value="提交"></td>
+			</tr>
+        </table>
+    </form>
+    <center>
+        <a href='Merchant.html'>回商户首页</a></center>
+</body>
+</html>

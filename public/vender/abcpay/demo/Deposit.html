@@ -1,0 +1,65 @@
+<script type="text/javascript">
+    function CheckValue() {
+        var paymenttype = document.getElementById("txtPaymentType").value;
+        var paymentlinktype = document.getElementById("txtPaymentLinkType").value;
+        if (paymenttype == "6" && paymentlinktype == "2") {
+            trUnionPayLinkType.style.display = "inline";
+        } else {
+            trUnionPayLinkType.style.display = "none";
+        }
+    }
+</script>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-支付请求</title>
+</head>
+<body style="font-size: 14px;">
+<center>支付请求</center>
+<form id="form1" action="Deposit.php" method="post">
+    <table>
+        <tr>
+            <td>订单支付有效期</td>
+            <td><input name="txtorderTimeoutDate" value="20240619104901" />精确到秒，选输</td>
+        </tr>
+        <tr>
+            <td>交易编号</td>
+            <td><input name="txtOrderNo" value="ON200412230001" />*必输</td>
+        </tr>
+        <tr>
+            <td>交易金额</td>
+            <td><input name="txtOrderAmount" value="0.01" />保留小数点后两位数字,*必输</td>
+        </tr>
+        <tr>
+            <td>订单说明</td>
+            <td><input name="txtOrderDesc" value="Game Card Order" />选输</td>
+        </tr>
+        <tr>
+            <td>交易渠道</td>
+            <td><input name="txtPaymentLinkType" value="1" onkeyup="CheckValue()"  />1：internet网络接入 2：手机网络接入 3:数字电视网络接入 4:智能客户端，*必输</td>
+        </tr>
+        <tr>
+            <td>通知方式</td>
+            <td><input name="txtNotifyType" value="0" />0：URL页面通知 1：服务器通知，*必输</td>
+        </tr>
+        <tr>
+            <td>通知URL地址</td>
+            <td><input name="txtResultNotifyURL" value="http://127.0.0.1/Merchant/MerchantResult.aspx" />*必输</td>
+        </tr>
+        <tr>
+            <td>二级商户号</td>
+            <td><input name="txtReceiveSubMerchantNo" value="1234567890" />*必输</td>
+        </tr>
+        <tr>
+            <td>附言</td>
+            <td><input name="txtMerchantRemarks" value="" />不超过100个字符，选输</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交页面内容" /></td>
+        </tr>
+    </table>
+</form>
+<a href="Merchant.html">回商户首页</a>
+</body>
+</html>

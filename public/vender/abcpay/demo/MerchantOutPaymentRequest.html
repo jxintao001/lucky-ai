@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口范例-出金交易请求</title>
+</head>
+
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+	<CENTER>出金交易请求</CENTER>
+    <form name="form1" action='MerchantOutPaymentRequest.php' method="post">
+        <table>      
+            <tr>
+                <td>二级商户编号</td>
+                <td><input name='SubMerId' value='' />*必输</td>
+            </tr>
+            <tr>
+                <td>收款户名</td>
+                <td> <input name='AccountName' value='' />*必输</td>
+            </tr>
+            <tr>
+                <td>收款账号</td>
+                <td><input name='Account' value='' />*必输</td>
+            </tr>
+
+            <tr>
+                <td>出金金额</td>
+                <td><input name='TrxAmount' value='' />不关联支付订单时必输</td>
+            </tr>
+            <tr>
+			   <td>他行行号</td>
+			   <td><input name='RecBankNo' value='' />12位,他行出金金额大于50000时必输</td>
+			</tr>
+            <tr>
+            	<td>是否关联支付订单号</td>
+                <td><input name='DrawingFlag' value='' />选输 关联:1 不关联:0 </td>
+            </tr>
+            <tr>
+                <td>交易编号</td>
+                <td><input name='OrderNo' value=''/>关联支付订单号时必输</td>
+            </tr> 
+            <tr>
+                <td>附言</td>
+                <td><input name='Remark' value='综合收银台出金'/>选输</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="提交">
+        </table>
+    </form>
+    <center>
+        <a href='MerchantUnified.html'>回商户首页</a></center>
+</body>
+</html>

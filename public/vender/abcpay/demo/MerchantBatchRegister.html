@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农行网上支付平台-商户接口示例-批量登记三方订单(第三方交易渠道订单同步)</title>
+</head>
+
+<script language="javascript">
+    function formatIndex(index) {
+        if (index < 10)
+            return "00" + index;
+        else if (index >= 10 && index < 10000)
+            return "0" + index;
+        else
+            return index;
+    }
+    function addLine() {
+        /*
+        var count = form1.BatchCount.value;
+        if (isNaN(count)) {
+            alert("本批次笔数请输入数字！");
+            return false;
+        }
+        count = parseInt(count);
+        */
+
+            var row = batch.insertRow();
+            for (var j = 0; j < 4; j++) {
+                var col = row.insertCell();
+                switch (j) {
+                    case 0:
+                        col.align = "left";
+                        col.height = "30";
+                        col.innerHTML = "<input type=\"text\" name=\"SeqNo[]\" style=\"width:95%\" value=\"\">";
+                        break;
+                    case 1:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"SubMerchantNo[]\" style=\"width:95%\" value=\"\">";
+                        break;
+                    case 2:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"SubMerchantName[]\" style=\"width:95%\" value=\"\">";
+                        break;
+                    case 3:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"SubAmt[]\" style=\"width:95%\" value=\"\">";
+                        break;
+                }
+
+            }
+        form1.payment.disabled = "";
+    }
+    function submitFun() {
+
+        form1.submit();
+    }
+</script>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#0000FF"
+      alink="#FF0000">
+<center>批量登记三方订单</center>
+<form name="form1" action="MerchantBatchRegister.php" method="POST">
+    <table width="100%">
+        <tr>
+            <td>流水号</td>
+            <td><input name="RequestNo" value="001" /></td>
+        </tr>
+        <tr>
+            <td>订单号</td>
+            <td><input name="OrderNo" value="202003300001" /></td>
+        </tr>
+        <tr>
+            <td>订单时间</td>
+            <td><input name="OrderDate" value="2020-03-20 11:11:11" /></td>
+        </tr>
+        <tr>
+            <td>订单金额</td>
+            <td><input name="OrderAmount" value="2" /></td>
+        </tr>
+        <tr>
+            <td>交易类型</td>
+            <td><input name="TrnxCode" value="1" /></td>
+            <td>
+        <tr>
+            <td>业务类型</td>
+            <td><input name="TrnxType" value="SUCCESS" /></td>
+        </tr>
+        <tr>
+            <td>币种</td>
+            <td><input name="CurrencyCode" value="156" /></td>
+        </tr>
+        <tr>
+            <td>用户标识</td>
+            <td><input name="CustomId" value="202003300001" /></td>
+        </tr>
+        <tr>
+            <td>商品名称</td>
+            <td><input name="ProductName" value="202003300001" /></td>
+        </tr>
+        <tr>
+            <td>附言</td>
+            <td><input name="Remark" value="附言" /></td>
+        </tr>
+        <tr>
+            <td><input type="button" value=" 添加 " name="AddOrder"
+                       onclick="addLine()" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table border="1" style="font-size: 17px;" width="100%" id="batch">
+                    <tr>
+                        <td align="center">序号</td>
+                        <td align="center">二级商户编号</td>
+                        <td align="center">二级商户名称</td>
+                        <td align="center">分账金额</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2"><input type="button" value="批量提交"
+                                   name="payment" disabled="disabled" onclick="submitFun()"></td>
+        </tr>
+    </table>
+</form>
+<center>
+    <a href="Merchant.html">回商户首页</a>
+</center>
+</body>
+</html>

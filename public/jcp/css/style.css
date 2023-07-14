@@ -1,0 +1,40 @@
+@font-face {
+    font-family:'SiYuan';
+    src: url('asset/font/SOURCEHANSANSCN-NORMAL.OTF'),
+    url('asset/font/SOURCEHANSANSCN-NORMAL.eot#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family:'SiYuan-Medium';
+    src: url('asset/font/SOURCEHANSANSCN-MEDIUM.OTF'),
+    url('asset/font/SOURCEHANSANSCN-MEDIUM.eot#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family:'SiYuan-Heavy';
+    src: url('asset/font/SOURCEHANSANSCN-HEAVY.OTF'),
+    url('asset/font/SOURCEHANSANSCN-HEAVY.eot#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family:'SiYuan-Bold';
+    src: url('asset/font/SOURCEHANSANSCN-BOLD.OTF'),
+    url('asset/font/SOURCEHANSANSCN-BOLD.woff') format('woff');
+}
+
+@font-face {
+    font-family:'SiYuan-Light';
+    src: url('asset/font/SOURCEHANSANSCN-LIGHT.OTF'),
+    url('asset/font/SOURCEHANSANSCN-LIGHT.eot#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family:'SiYuan-ExtraLight';
+    src: url('asset/font/SOURCEHANSANSCN-EXTRALIGHT.OTF'),
+    url('asset/font/SOURCEHANSANSCN-EXTRALIGHT.eot#iefix') format('embedded-opentype');
+}
+*{outline: none;}
+
+body {font-family: '思源黑体 CN Normal'; color: #000; margin:0; padding:0;}/**/
+div {position: relative; overflow: hidden;}
+img {border: none;}

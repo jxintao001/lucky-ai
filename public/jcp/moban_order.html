@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Clodop Test</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="jcpfree.js"></script>
+	<style media="print">
+		@page {
+			size: auto;/* auto is the initial value */
+			margin: 0mm;  /* this affects the margin in the printer settings */
+		}
+	</style>
+	<style type="text/css">
+		.goods_list { width: 100%; border-collapse: collapse; border: #8D8D8D 1px solid; margin-top: 10px;}
+		.goods_list thead { font-family: '思源黑体 CN Medium';}
+
+		.goods_list td { line-height: 30px; border: #CDCDCD 1px solid; padding: 5px 10px; padding-bottom: 0; font-size: 10pt; }
+		.goods_list td.num { text-align: right; width: 15mm; }
+		.goods_list td.order_no { text-align: center; width: 60mm; line-height: 150%;}
+		.goods_list td img.bar_code { width: 60mm; height: 8mm; }
+		.goods_list td span.no { letter-spacing: 2pt; }
+	</style>
+</head>
+<body>
+	<div style="margin: auto; width: 210mm;">
+
+		<div id="jcp_menu" style="text-align: center; line-height: 45px; border-bottom: solid #666 1px; margin: 10px 0; margin-bottom: 0; display: none;">
+			<!-- <a href="javascript:doPrint('preview2');">打印预览</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; -->
+			<a href="javascript:doPrint('print');">点此选择打印机开始打印</a>
+		</div>
+		<div id="jcp_tip" style="text-align: center; line-height: 45px; border-bottom: solid #666 1px; margin: 10px 0; margin-bottom: 0; color: #F9291E; display: none;">
+			未取得订单流水号! 请关闭当前页面然后在管理后台选择需要打印的订单重试
+		</div>
+
+		<div id="pages"></div>
+
+		<div id="page" style="padding: 5mm; border-bottom: dotted 1px #000;  display: none;">
+			<div style="font-size: 12pt;">订单流水号：<span id="order_no">-</span></div>
+			<div style="font-size: 12pt; padding-left: 24pt;">收件人：<span id="contact_name">-</span></div>
+			<div style="font-size: 12pt; padding-left: 12pt;">联系电话：<span id="contact_phone">-</span></div>
+			<div style="font-size: 12pt; padding-left: 12pt;">收货地址：<span id="address">-</span></div>
+			<div style="font-size: 12pt; padding-left: 12pt;">买家备注：<span id="remark">-</span></div>
+			<div style="font-size: 12pt; padding-left: 12pt;">物流公司：<span id="express_company">-</span></div>
+			<div style="font-size: 12pt; padding-left: 12pt;">物流单号：<span id="express_no">-</span></div>
+
+			<table class="goods_list">
+				<thead>
+					<tr>
+						<td class="order_no">商品条码及货号</td>
+						<td>商品名称</td>
+						<td class="num">数量</td>
+					</tr>
+				</thead>
+				<tbody id="goods_tbody">
+					<tr id="goods_moban" style="display: none;">
+						<td class="order_no">-</td>
+						<td>-</td>
+						<td class="num">-</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	
+	<script>
+		var urldata = "http://api.hihgo.com";
+		var orderStr = (window.location.search).split('=')[1]; 
+		if (!orderStr) { 
+			//alert('无法获取订单号ID');
+			$("#jcp_menu").hide();
+			$("#jcp_tip").show();
+		} else {
+			$("#jcp_menu").show();
+			$("#jcp_tip").hide();
+
+			var orderArr = orderStr.split(','); //console.log(billArr);
+			var orderArrLen = orderArr.length
+			go();
+			//getBillInfo(billArr.shift());
+		}
+
+		var pageIndex = 0;
+
+		function doPrint(how) {
+			console.log('打印开始');
+			var myDoc = {
+				settings : {
+					marginLeft : 0,
+					marginRight : 0,
+					marginTop : 0,
+					marginBottom : 0
+				},
+				documents : document, // 打印页面(div)们在本文档中
+				copyrights : '杰创软件拥有版权  www.jatools.com' // 版权声明必须
+			};
+
+			var jcp = getJCP();
+			// 调用打印方法
+			if (how == 'preview')
+				jcp.printPreview(myDoc, false);
+			else if (how == "preview2") {
+				jcp.printPreview(myDoc, true);
+			} else if (how == 'print') {
+				jcp.print(myDoc, true);
+			} else {
+				jcp.print(myDoc, false); // 不弹出对话框打印
+			}
+			/*
+			setTimeout(function(){
+				window.location.href = 'http://api.hihgo.com/jcp/moban.html?bills=' + billArr.join();
+			}, 2000);*/
+		}
+
+		function go(){
+			for (var i = 0; i < orderArrLen; i++) {
+				console.log(orderArr[i]);
+				getOrderInfo(orderArr[i]);
+
+				//setTimeout(function(){
+				//	getBillInfo(bills[i]);
+				//}, 2000);
+			}
+		}
+
+		/* ---
+		function getBillJson(id){
+			$.getJSON(urldata + "/waybills/" + id, function(json){
+				console.log(json);
+				setBillPage(json);
+			}); 
+		} */
+
+		function getOrderInfo(id){
+			demoAjax({
+				url: "/sorting_waybills/" + id,
+				async: false,
+				successBack: function(res){
+					console.log(res.data.items.data[0]);
+					setOrderPage(res);
+				}
+			});
+		}
+
+		function callbackFun(){
+			//--jsonpCallback
+		}
+
+		function setOrderPage(obj){
+			pageIndex = pageIndex + 1;
+			var $page = $('#page').clone().attr('id', 'page'+pageIndex);
+			
+			$page.find("#order_no").text(obj.data.no);
+			$page.find("#contact_name").text(obj.data.address.contact_name);
+			$page.find("#contact_phone").text(obj.data.address.contact_phone);
+			$page.find("#address").text(obj.data.address.full_address);
+			if (obj.data.remark != '') $page.find("#remark").text(obj.data.remark); else $("#remark").text('无');
+			$page.find("#express_company").text(obj.data.ship_data.express_company);
+			$page.find("#express_no").text(obj.data.ship_data.express_no);
+
+			var goods_arr = obj.data.items.data;
+			var goods_num = goods_arr.length; console.log(goods_num);
+			var $goods_tbody = $page.find("#goods_tbody")
+
+			for (i = 0; i < goods_num; i++) {
+				var $goods = $page.find('#goods_moban').clone().attr('id', 'goods' + i); console.log($goods);
+				console.log(goods_arr[i].productSku.data.no, goods_arr[i].productSku.data.title, goods_arr[i].amount);
+				$goods.find('td:eq(0)').html('<img class="bar_code" src="' + goods_arr[i].productSku.data.bar_code + '" />' + '<br /><span class="no">' + goods_arr[i].productSku.data.no + '</span>').next().text(goods_arr[i].productSku.data.title).next().text(goods_arr[i].amount);
+				$goods.appendTo($goods_tbody).show();
+			}
+
+			$page.appendTo('#pages').show();
+			if ( pageIndex == orderArrLen ) { $page.css({'border-bottom': 'none'}); console.log('ok!'); }
+			/*pageIndex = pageIndex + 1;
+			var $page = $('#page').clone().attr('id', 'page'+pageIndex);
+			console.log($page);
+			$page.appendTo('#pages').show();
+			if ( pageIndex == billArrLen ) console.log('ok!');*/
+			//doPrint();
+		}
+
+		function demoAjax(opt){
+			$.ajax({
+				url:urldata+opt.url,//数据的接口的路径
+				dataType:opt.dataType||'json',
+				type: opt.type||"get",//请求的方式  默认是get
+				data:opt.data||"",//请求的参数  默认是空
+				async:opt.async||true,//是否是异步，默认是异步
+				contentType:opt.contenttype||'application/x-www-form-urlencoded;charset=utf-8',
+				// json: "callbackFun",
+				// jsonpCallback:"callbackFun",
+				timeout: 30000,
+				// crossDomain: true,
+				// xhrFields:{withCredentials: true} ,
+				// withCredentials : true,
+				// beforeSend:function(be){
+				// opt.beforeSendBack instanceof Function&&opt.beforeSendBack(be);
+				// },  
+				success: function(res) {
+					opt.successBack instanceof Function&&opt.successBack(res);
+				},
+				error: function(xhr, type, errorThrown){
+					console.log(xhr)
+					console.log(JSON.stringify(xhr));
+					console.log(type);
+					console.log(errorThrown);
+				}
+			});
+		}
+	</script>
+
+</body>
+</html>

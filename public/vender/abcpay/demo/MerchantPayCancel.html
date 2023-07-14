@@ -1,0 +1,41 @@
+<!--
+/*
+ * @(#)MerchantTrxSettle.html	V1.5.1	2004/11/10
+ 
+ * Modify Information:
+ *    Author        Date        Description
+ *    ============  ==========  =======================================
+        liangbao      20140425
+ */
+-->
+<HTML>
+<HEAD><TITLE>农行网上支付平台-商户接口范例-商户订单撤销</TITLE>
+    <meta charset="UTF-8">
+</HEAD>
+<BODY BGCOLOR='#FFFFFF' TEXT='#000000' LINK='#0000FF' VLINK='#0000FF' ALINK='#FF0000'>
+  <CENTER>商户订单撤销</CENTER>
+  <FORM name='form1' action='MerchantPayCancel.php' method='post'>
+    <TABLE>
+      <TR>
+      		<TD>订单编号</TD>
+      		<TD><INPUT NAME='OrderNo' VALUE='No636864242634478000'>*必输</TD>
+      </TR>
+      <TR>
+      		<TD>二级商户号</TD>
+      		<TD><INPUT NAME='SubMchNO' VALUE=''>选输</TD>
+      </TR>
+      <TR>
+      		<TD>商户模式</TD>
+          	<TD><INPUT NAME='ModelFlag' VALUE='1'>1:大商户模式，0：非大商户模式 *必输</TD>
+          
+      </TR>
+      <TR>
+      		<TD>支付渠道</TD>
+      		<TD><INPUT NAME='MerchantFlag' VALUE='W'>W:微信，Z：支付宝 *必输</TD>
+      </TR>
+      <TR><TD colspan=2><INPUT type='submit'>
+    </TABLE>
+  </FORM>
+  <CENTER><a href='MerchantUnified.html'>回商户首页</a></CENTER>
+</BODY>
+</HTML>
