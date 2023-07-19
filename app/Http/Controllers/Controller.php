@@ -15,15 +15,6 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests, Helpers;
     public function __construct()
     {
-        if (!config('app.shop_id')){
-            $shop_id = intval(request('shop_id'));
-            if (!$shop_id){
-                throw new ResourceException('店铺id不能为空');
-            }
-            $user = Auth::user();
-            if ($user && $user->shop_id != $shop_id){
-                throw new ResourceException('店铺id和用户账号信息不匹配');
-            }
-        }
+
     }
 }
