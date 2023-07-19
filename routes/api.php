@@ -22,6 +22,8 @@ $api->version('v1', function ($api) {
         });
 
         $api->get('douyin_oauth', 'AuthController@douyinOauth')->name('douyin.oauth');
+        $api->post('douyin_event', 'EventController@douyinEvent')->name('douyin.event');
+
 
 
     });
