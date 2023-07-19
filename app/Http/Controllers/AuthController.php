@@ -7,16 +7,6 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->middleware('auth:api', ['except' => ['douyinOauth']]);
-    }
 
     public function douyinOauth(Request $request)
     {
@@ -61,10 +51,21 @@ class AuthController extends Controller
         $videoListResponse = $this->httpGet($url, $data);
         $videoListResponse = json_decode($videoListResponse, true);
 
-        return $videoListResponse;
-
-
-        return $videoListResponse;
+        $firstVideoId = $videoListResponse['data']['list'][0]['item_id'];
+        // 获取评论列表
+        $url = 'https://open.douyin.com/item/comment/list/';
+        $data = [
+            'access_token' => $access_token,
+            'open_id'      => $open_id,
+            'item_id'      => $firstVideoId,
+            'cursor'       => 0,
+            'count'        => 10,
+        ];
+        $commentListResponse = $this->httpGet($url, $data);
+        $commentListResponse = json_decode($commentListResponse, true);
+        // 写入日志
+        Log::error('douyinCommentListResponse', $commentListResponse);
+        return $commentListResponse;
 
     }
 
