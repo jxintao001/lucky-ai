@@ -127,7 +127,7 @@ class AuthController extends Controller
         $response = $client->request('POST', $url, [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $data['access_token'] ?? '',
+                'Authorization' => 'Bearer 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',
             ],
             'json' => $data,
         ]);
