@@ -15,7 +15,7 @@ class EventController extends Controller
         // 写入日志
         Log::error('douyinEvent', [$data]);
         if ($data['event'] === 'item_comment_reply'){
-            $eventContent = $data['content'];
+            $eventContent = json_decode($data['content'], true);
             // 写入日志
             Log::error('douyinEventContent', [$eventContent]);
             // 调用chatGpt接口
