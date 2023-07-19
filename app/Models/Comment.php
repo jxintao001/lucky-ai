@@ -10,4 +10,8 @@ class Comment extends Model
 
     protected $table = 'comments';
 
+    protected $casts = [
+        'event_data' => 'json',
+    ];
+
 }
