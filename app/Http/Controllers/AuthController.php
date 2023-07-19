@@ -78,7 +78,7 @@ class AuthController extends Controller
                 ],
                 [
                     "role" => "user",
-                    "content" => $commentListResponse['data']['list'][0]['text']
+                    "content" => $commentListResponse['data']['list'][0]['content']
                 ]
             ]
         ];
