@@ -31,15 +31,15 @@ class AuthController extends Controller
         Log::error('douyinOauthResponse', $tokenResponse);
 
         // 获取用户信息
-        $url = 'https://open.douyin.com/oauth/userinfo';
-        $data = [
-            'access_token' => $access_token,
-            'open_id'      => $open_id,
-        ];
-        $userInfoResponse = $this->httpPost($url, $data);
-        $userInfoResponse = json_decode($userInfoResponse, true);
-        // 写入日志
-        Log::error('douyinUserInfoResponse', $userInfoResponse);
+//        $url = 'https://open.douyin.com/oauth/userinfo';
+//        $data = [
+//            'access_token' => $access_token,
+//            'open_id'      => $open_id,
+//        ];
+//        $userInfoResponse = $this->httpPost($url, $data);
+//        $userInfoResponse = json_decode($userInfoResponse, true);
+//        // 写入日志
+//        Log::error('douyinUserInfoResponse', $userInfoResponse);
 
         // get 获取视频列表
         $url = 'https://open.douyin.com/api/douyin/v1/video/video_list/';
@@ -50,7 +50,8 @@ class AuthController extends Controller
         ];
         $videoListResponse = $this->httpGet($url, $data);
         $videoListResponse = json_decode($videoListResponse, true);
-
+        // 写入日志
+        Log::error('douyinVideoListResponse', $videoListResponse);
         $firstVideoId = $videoListResponse['data']['list'][0]['item_id'];
         // 获取评论列表
         $url = 'https://open.douyin.com/item/comment/list/';
@@ -65,6 +66,9 @@ class AuthController extends Controller
         $commentListResponse = json_decode($commentListResponse, true);
         // 写入日志
         Log::error('douyinCommentListResponse', $commentListResponse);
+
+        // 调用chatGpt接口
+
         // 回复视频评论
         $url = 'https://open.douyin.com/item/comment/reply/?open_id='.$open_id;
         $data = [
@@ -83,14 +87,19 @@ class AuthController extends Controller
 
 
 
-    // 用第三方包Client post请求 Content-Type ="application/json"
-
+    // 用第三方包Client post请求 Content-Type ="application/json" 设置header access_token
     public function httpPost($url, $data)
     {
         $client = new \GuzzleHttp\Client();
         $response = $client->request('POST', $url, [
+            'headers' => [
+                'access-token' => $data['access_token'] ?? '',
+                'Content-Type' => 'application/json',
+            ],
             'json' => $data,
         ]);
+
+
         return $response->getBody();
     }
 
