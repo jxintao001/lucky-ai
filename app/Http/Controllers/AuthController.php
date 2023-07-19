@@ -65,7 +65,19 @@ class AuthController extends Controller
         $commentListResponse = json_decode($commentListResponse, true);
         // 写入日志
         Log::error('douyinCommentListResponse', $commentListResponse);
-        return $commentListResponse;
+        // 回复视频评论
+        $url = 'https://open.douyin.com/item/comment/reply/?open_id='.$open_id;
+        $data = [
+            'access_token' => $access_token,
+            'item_id'      => $firstVideoId,
+            'comment_id'   => $commentListResponse['data']['list'][0]['comment_id'],
+            'content'      => '回复评论',
+        ];
+        $replyCommentResponse = $this->httpPost($url, $data);
+        $replyCommentResponse = json_decode($replyCommentResponse, true);
+        // 写入日志
+        Log::error('douyinReplyCommentResponse', $replyCommentResponse);
+        return $replyCommentResponse;
 
     }
 
