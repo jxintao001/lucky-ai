@@ -54,7 +54,7 @@ class EventController extends Controller
             try {
                 $url = 'https://api.openai-proxy.com/v1/chat/completions';
                 $systemRoleContent = !empty($accountConfig->system_prompt) ? $accountConfig->system_prompt : '我是主人是 ' . $accountConfig->nickname;
-                $userRoleContent = $eventContent['content'] . ' 。回复的内容总长度不能超过100个字符、回复内容不能包含低俗信息和抖音限制的言论。';
+                $userRoleContent = $eventContent['content'] . ' 。回复的内容尽量精简，总长度绝对不能超过100个字符、也不能包含低俗信息和抖音限制的言论。';
                 $data = [
                     "model"    => "gpt-3.5-turbo",
                     "messages" => [
