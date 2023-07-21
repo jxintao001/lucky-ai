@@ -53,7 +53,7 @@ class EventController extends Controller
             // 调用chatGpt接口
             try {
                 $url = 'https://api.openai-proxy.com/v1/chat/completions';
-                $systemRoleContent = !empty($accountConfig->system_prompt) ? $accountConfig->system_prompt : '我是 ' . $accountConfig->nickname . ' 的抖音评论回复助手';
+                $systemRoleContent = !empty($accountConfig->system_prompt) ? $accountConfig->system_prompt : '我是主人是 ' . $accountConfig->nickname;
                 $userRoleContent = $eventContent['content'] . ' 。回复的内容总长度不能超过100个字符、回复内容不能包含低俗信息和抖音限制的言论。';
                 $data = [
                     "model"    => "gpt-3.5-turbo",
