@@ -27,15 +27,29 @@ class AuthController extends Controller
         $tokenResponse = json_decode($tokenResponse, true);
         // 写入日志
         Log::error('douyinOauthResponse', $tokenResponse);
+        // 获取用户信息
+        $url = 'https://open.douyin.com/oauth/userinfo';
+        $data = [
+            'access_token' => $tokenResponse['data']['access_token'],
+            'open_id'      => $tokenResponse['data']['open_id'],
+        ];
+        $userInfoResponse = $requestService->httpPost($url, $data);
+        $userInfoResponse = json_decode($userInfoResponse, true);
+        // 写入日志
+        Log::error('douyinUserInfoResponse', $userInfoResponse);
         // 查询是否有该用户配置，有则更新，无则创建
         $accountConfig = AccountConfig::where('user_id', $tokenResponse['data']['open_id'])->first();
         if ($accountConfig) {
+            $accountConfig->nickname = $userInfoResponse['data']['nickname'];
+            $accountConfig->avatar = $userInfoResponse['data']['avatar'];
             $accountConfig->access_token = $tokenResponse['data']['access_token'];
             $accountConfig->refresh_token = $tokenResponse['data']['refresh_token'];
             $accountConfig->save();
         } else {
             $accountConfig = new AccountConfig();
             $accountConfig->user_id = $tokenResponse['data']['open_id'];
+            $accountConfig->nickname = $userInfoResponse['data']['nickname'];
+            $accountConfig->avatar = $userInfoResponse['data']['avatar'];
             $accountConfig->access_token = $tokenResponse['data']['access_token'];
             $accountConfig->refresh_token = $tokenResponse['data']['refresh_token'];
             $accountConfig->openai_key = config('douyin.openai_key');
