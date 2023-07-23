@@ -53,8 +53,8 @@ class EventController extends Controller
             // 调用chatGpt接口
             try {
                 $url = 'https://api.openai-proxy.com/v1/chat/completions';
-                $systemRoleContent = !empty($accountConfig->system_prompt) ? $accountConfig->system_prompt : '我是 ' . $accountConfig->nickname. ' 的智能助手，我会帮Ta回复评论。';
-                $userRoleContent = $eventContent['content'] . ' 。回复的内容尽量精简，总长度绝对不能超过100个字符。';
+                $systemRoleContent = !empty($accountConfig->system_prompt) ? $accountConfig->system_prompt : '我是 ' . $accountConfig->nickname. ' 的智能助手，我会帮Ta回复评论。回复内容总长度绝对不能超过100个字符。';
+                $userRoleContent = $eventContent['content'];
                 $data = [
                     "model"    => "gpt-3.5-turbo",
                     "messages" => [
